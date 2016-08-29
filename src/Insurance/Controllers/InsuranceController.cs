@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Insurance.Models.InsuranceViewModels;
 using Insurance.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Insurance.Controllers
 {
@@ -20,6 +21,11 @@ namespace Insurance.Controllers
 
         public IActionResult AddCustomer()
         {
+            this.ViewBag.InsuranceNames = new SelectListItem[] {
+                new SelectListItem() { Value="pp",Text="Pepe"},
+                new SelectListItem() { Value="pd",Text="Pedro"},
+                new SelectListItem() { Value="jl",Text="Julio"},
+            };
             return View();
         }
 
@@ -29,12 +35,19 @@ namespace Insurance.Controllers
             this.context.Add(c);
             this.context.SaveChanges();
 
-            return View("", "");
+            return RedirectToAction("ShowCustomers");
         }
 
         public IActionResult ShowCustomers()
         {
             return View(this.context.Customers.ToList());
         }
+
+        
+        public JsonResult InsuranceTypes(string insuranceid)
+        {
+            return new JsonResult(new { name="susano",lastname="rcky"});
+        }
+
     }
 }

@@ -7,7 +7,7 @@
 
 <h2>ShowCustomers</h2>
 
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
             <td>Name</td>
@@ -18,8 +18,8 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>item.Name</td>
-                <td>item.Email</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
             </tr>
         }
     </tbody>

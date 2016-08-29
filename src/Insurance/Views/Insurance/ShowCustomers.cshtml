@@ -1,0 +1,35 @@
+@using System.Collections.Generic
+@model IEnumerable<Insurance.Models.InsuranceViewModels.Customer>
+
+@{
+    ViewData["Title"] = "ShowCustomers";
+}
+
+<h2>ShowCustomers</h2>
+
+<table>
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>item.Name</td>
+                <td>item.Email</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-Insurance-b483fc7c-6897-4519-bfea-21c3d9b71bab",
 
   "dependencies": {
@@ -40,10 +40,11 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "EntityFramework.Core": "7.0.0-rc1-final"
   },
 
   "tools": {

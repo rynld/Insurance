@@ -42,9 +42,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="InsuranceType" class="col-md-2 control-label"></label>
+            <label asp-for="PlanType" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="InsuranceType" class="form-control" >
+                <select id="plantype" asp-for="PlanType" class="form-control" >
                     <option value="none">Select one insurance first</option>
                 </select>
             </div>
@@ -67,8 +67,14 @@
                 type: "GET",
                 url: "InsuranceTypes",
                 data:{insuranceid:select_id},
-                error: "Unexpected error",
-                success: function (data) { alert(data.name);}
+                error: function () { alert("error")},
+                success: function (data) {
+                    var dropdown = $("#plantype");
+                    dropdown.empty();
+                    $.each(data, function (index, value) {
+                        dropdown.append($('<option></option>').val(value.value).html(value.text));
+                    });
+                }
             })
             
             

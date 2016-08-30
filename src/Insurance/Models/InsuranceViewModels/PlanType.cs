@@ -6,20 +6,15 @@ using System.Threading.Tasks;
 
 namespace Insurance.Models.InsuranceViewModels
 {
-    public class Customer
+    public class PlanType
     {
         public int Id { get; set; }
 
         [Required]
-        
         public string Name { get; set; }
 
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        public InsuranceCompany Company { get; set; }
 
-        public InsuranceCompany InsuranceName { get; set; }
-
-        public PlanType PlanType { get; set; }
+        public int CompanyId { get; set; }
     }
 }

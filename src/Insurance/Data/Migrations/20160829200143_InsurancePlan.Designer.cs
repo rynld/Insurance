@@ -8,9 +8,10 @@ using Insurance.Data;
 namespace Insurance.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160829200143_InsurancePlan")]
+    partial class InsurancePlan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -73,18 +74,14 @@ namespace Insurance.Data.Migrations
                     b.Property<string>("Email")
                         .IsRequired();
 
-                    b.Property<int?>("InsuranceNameId");
+                    b.Property<string>("InsuranceName");
 
-                    b.Property<int?>("InsuranceTypeId");
+                    b.Property<string>("InsuranceType");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InsuranceNameId");
-
-                    b.HasIndex("InsuranceTypeId");
 
                     b.ToTable("Customers");
                 });
@@ -224,17 +221,6 @@ namespace Insurance.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Insurance.Models.InsuranceViewModels.Customer", b =>
-                {
-                    b.HasOne("Insurance.Models.InsuranceViewModels.InsuranceCompany", "InsuranceName")
-                        .WithMany()
-                        .HasForeignKey("InsuranceNameId");
-
-                    b.HasOne("Insurance.Models.InsuranceViewModels.PlanType", "InsuranceType")
-                        .WithMany()
-                        .HasForeignKey("InsuranceTypeId");
                 });
 
             modelBuilder.Entity("Insurance.Models.InsuranceViewModels.PlanType", b =>

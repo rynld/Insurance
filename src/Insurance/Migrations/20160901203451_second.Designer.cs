@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Insurance.Data;
 
-namespace Insurance.Data.Migrations
+namespace Insurance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160829210409_InsurancePlan1")]
-    partial class InsurancePlan1
+    [Migration("20160901203451_second")]
+    partial class second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,18 +74,12 @@ namespace Insurance.Data.Migrations
                     b.Property<string>("Email")
                         .IsRequired();
 
-                    b.Property<int?>("InsuranceNameId");
-
-                    b.Property<int?>("InsuranceTypeId");
-
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<string>("PlanType");
+
                     b.HasKey("Id");
-
-                    b.HasIndex("InsuranceNameId");
-
-                    b.HasIndex("InsuranceTypeId");
 
                     b.ToTable("Customers");
                 });
@@ -108,7 +102,7 @@ namespace Insurance.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CompanyId");
+                    b.Property<int>("CompanyId");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -227,22 +221,12 @@ namespace Insurance.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Insurance.Models.InsuranceViewModels.Customer", b =>
-                {
-                    b.HasOne("Insurance.Models.InsuranceViewModels.InsuranceCompany", "InsuranceName")
-                        .WithMany()
-                        .HasForeignKey("InsuranceNameId");
-
-                    b.HasOne("Insurance.Models.InsuranceViewModels.PlanType", "InsuranceType")
-                        .WithMany()
-                        .HasForeignKey("InsuranceTypeId");
-                });
-
             modelBuilder.Entity("Insurance.Models.InsuranceViewModels.PlanType", b =>
                 {
                     b.HasOne("Insurance.Models.InsuranceViewModels.InsuranceCompany", "Company")
                         .WithMany("PlanTypes")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

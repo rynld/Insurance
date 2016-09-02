@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Insurance.Data;
 
-namespace Insurance.Data.Migrations
+namespace Insurance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160829162144_First")]
+    [Migration("20160901022330_First")]
     partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,6 +80,36 @@ namespace Insurance.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Insurance.Models.InsuranceViewModels.InsuranceCompany", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InsuranceCompanies");
+                });
+
+            modelBuilder.Entity("Insurance.Models.InsuranceViewModels.PlanType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CompanyId");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("PlanTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -187,6 +217,14 @@ namespace Insurance.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Insurance.Models.InsuranceViewModels.PlanType", b =>
+                {
+                    b.HasOne("Insurance.Models.InsuranceViewModels.InsuranceCompany", "Company")
+                        .WithMany("PlanTypes")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

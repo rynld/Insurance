@@ -59,7 +59,6 @@ namespace Insurance.Controllers
         {
             this.context.Add(c);
             this.context.SaveChanges();
-
             return RedirectToAction("ShowCustomers");
         }
 
@@ -71,7 +70,7 @@ namespace Insurance.Controllers
         
         public JsonResult InsuranceTypes(string insuranceid)
         {
-            var plans = this.context.PlanTypes.Where(x => x.CompanyId == int.Parse(insuranceid));
+            var plans = this.context.PlanTypes.Where(x => x.Company.Id == int.Parse(insuranceid));
             
             List<SelectListItem> res = new List<SelectListItem>();
             foreach (var item in plans)            
@@ -79,6 +78,8 @@ namespace Insurance.Controllers
                         
             return new JsonResult(res);
         }
+
+
 
     }
 }

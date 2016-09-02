@@ -43,8 +43,7 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    },
-    "EntityFramework.Core": "7.0.0-rc1-final"
+    }
   },
 
   "tools": {

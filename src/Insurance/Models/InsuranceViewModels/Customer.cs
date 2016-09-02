@@ -15,10 +15,10 @@ namespace Insurance.Models.InsuranceViewModels
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; }       
 
-        public InsuranceCompany InsuranceName { get; set; }
-
-        public PlanType PlanType { get; set; }
+        public string PlanType { get; set; }      
+        
+                
     }
 }

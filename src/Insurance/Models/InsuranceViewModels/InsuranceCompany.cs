@@ -10,8 +10,7 @@ namespace Insurance.Models.InsuranceViewModels
     {
         public int Id { get; set; }
 
-        [Required]
-        
+        [Required]        
         public string Name { get; set; }
 
         public List<PlanType> PlanTypes { get; set; }

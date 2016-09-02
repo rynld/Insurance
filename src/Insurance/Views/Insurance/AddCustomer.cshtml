@@ -25,22 +25,17 @@
                 <span asp-validation-for="Email" class="text-danger" />
             </div>
         </div>
+       
+        
         <div class="form-group">
-            <label class="col-md-2 control-label">Hola</label>
+            <label class="col-md-2 control-label">Insurance Name</label>
             <div class="col-md-10">
-                <select class="form-control">
-                    
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="InsuranceName" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select id="insurancename" asp-for="InsuranceName" class="form-control" asp-items="ViewBag.InsuranceNames">
+                <select id="insurancename" class="form-control" asp-items="ViewBag.InsuranceNames">
                     <option value="none">Please select one</option>
                 </select>
             </div>
         </div>
+        
         <div class="form-group">
             <label asp-for="PlanType" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -49,6 +44,7 @@
                 </select>
             </div>
         </div>
+            
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-success" />
@@ -72,7 +68,7 @@
                     var dropdown = $("#plantype");
                     dropdown.empty();
                     $.each(data, function (index, value) {
-                        dropdown.append($('<option></option>').val(value.value).html(value.text));
+                        dropdown.append($('<option></option>').val(value.text).html(value.text));
                     });
                 }
             })

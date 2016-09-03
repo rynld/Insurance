@@ -1,5 +1,5 @@
 @using System.Collections
-@model IEnumerable< Insurance.Models.InsuranceViewModels.Transaction>
+@model IEnumerable<Insurance.Models.InsuranceViewModels.Transaction>
 
 @{
     ViewData["Title"] = "Transaction";
@@ -9,26 +9,28 @@
 
 <div class="row">
 
-    <div class="col-md-2 ">      
-         
-        <div class="ui search">
-            <div class="ui icon input panel_search">
-                <input class="prompt" data-type="search" type="text" id="name_filter" placeholder="Search for name" />
-                <i class="search icon"></i>
-            </div>
+    <div class="col-md-2 panel_search">
 
-            <div class="ui icon input panel_search">
-                <input class="prompt" data-type="search" type="text" id="plantype_filter" placeholder="Search for plan type" />
-                <i class="search icon"></i>
-            </div>
-        </div>
+        <ul class="nav nav-pills nav-stacked">            
+            <li role="presentation" class="form-group">
+                <input class="form-control" type="text" id="name_filter" placeholder="Search forname" />
+                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </li>
+            <li role="presentation" class="form-group">
+                <input class="form-control" type="text" id="plantype_filter" placeholder="Search for plan type" />
+                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </li>
+            <li role="presentation" class="form-group">                
+                <input class="form-control" type="text" id="datepicker" placeholder="Select a date" />
+                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </li>
+        </ul>
 
-        
-        
+
     </div>
-    
+
     <div class="col-md-10">
-        <table class="table table-striped" >
+        <table class="table table-striped table-bordered" >
             <thead>
                 <tr>
                     <td>Name</td>
@@ -54,7 +56,7 @@
 
 <script>
     $(document).ready(function () {
-        
+
         $('#name_filter').keyup(function () {
             var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
             var rows = $('#transaction_table tr');

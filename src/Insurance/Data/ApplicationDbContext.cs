@@ -34,6 +34,8 @@ namespace Insurance.Data
         public DbSet<InsuranceCompany> InsuranceCompanies { get; set; }
 
         public DbSet<PlanType> PlanTypes { get; set; }
+
+        public DbSet<Transaction> Transactions { get; set; }
     }
 
   

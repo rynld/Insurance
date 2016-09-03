@@ -17,7 +17,12 @@ namespace Insurance.Controllers
         public InsuranceController(ApplicationDbContext context)
         {
             this.context = context;
+            //AddInitialData();
 
+        }
+
+        public void AddInitialData()
+        {
             //this.context.InsuranceCompanies.Add(new InsuranceCompany() {
             //    Name = "Medicare",
             //    PlanTypes = new List<PlanType>() {
@@ -39,7 +44,22 @@ namespace Insurance.Controllers
             //            Name="OldBBQ"}
             //    }
             //});
-            //this.context.SaveChanges();
+
+
+            var r = new Random();
+            var list = this.context.PlanTypes.ToList();
+
+            for (int i = 0; i < 20; i++)
+            {
+                this.context.Transactions.Add(new Transaction() {
+                    DepositedMoney = r.Next(30),
+                    Name = "john doe"+r.Next(4).ToString(),
+                    PlanType = list[r.Next(list.Count)].Name,
+                    TransactionDate = new DateTime(2016,r.Next(1,13),r.Next(1,28))
+                 
+                });
+            }
+            this.context.SaveChanges();
         }
 
         public IActionResult AddCustomer()
@@ -79,6 +99,12 @@ namespace Insurance.Controllers
             return new JsonResult(res);
         }
 
+
+        public IActionResult Transaction()
+        {
+
+            return View(this.context.Transactions.ToList());
+        }
 
 
     }

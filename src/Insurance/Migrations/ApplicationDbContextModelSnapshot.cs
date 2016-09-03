@@ -113,6 +113,24 @@ namespace Insurance.Migrations
                     b.ToTable("PlanTypes");
                 });
 
+            modelBuilder.Entity("Insurance.Models.InsuranceViewModels.Transaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("DepositedMoney");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("PlanType");
+
+                    b.Property<DateTime>("TransactionDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Transactions");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
                 {
                     b.Property<string>("Id");

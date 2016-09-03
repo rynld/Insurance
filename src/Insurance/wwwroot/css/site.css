@@ -48,3 +48,8 @@ textarea {
     display: none
   }
 }
+
+.panel_search{
+    margin-right: 30px;
+    margin-top:40px;
+}

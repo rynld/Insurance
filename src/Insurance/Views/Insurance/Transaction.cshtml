@@ -1,0 +1,83 @@
+@using System.Collections
+@model IEnumerable< Insurance.Models.InsuranceViewModels.Transaction>
+
+@{
+    ViewData["Title"] = "Transaction";
+}
+
+<h2>Transaction</h2>
+
+<div class="row">
+
+    <div class="col-md-2 ">      
+         
+        <div class="ui search">
+            <div class="ui icon input panel_search">
+                <input class="prompt" data-type="search" type="text" id="name_filter" placeholder="Search for name" />
+                <i class="search icon"></i>
+            </div>
+
+            <div class="ui icon input panel_search">
+                <input class="prompt" data-type="search" type="text" id="plantype_filter" placeholder="Search for plan type" />
+                <i class="search icon"></i>
+            </div>
+        </div>
+
+        
+        
+    </div>
+    
+    <div class="col-md-10">
+        <table class="table table-striped" >
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Deposited Money</td>
+                    <td>Transaction Date</td>
+                    <td>PlanType</td>
+                </tr>
+            </thead>
+            <tbody id="transaction_table">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td id="name_row">@item.Name</td>
+                        <td id="money_row">@item.DepositedMoney</td>
+                        <td id="transaction_row">@item.TransactionDate</td>
+                        <td id="plantype_row">@item.PlanType</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        
+        $('#name_filter').keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+            var rows = $('#transaction_table tr');
+            rows.show().filter(function () {
+                var text = $(this).find("#name_row").text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+        $('#plantype_filter').keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+            var rows = $('#transaction_table tr');
+            rows.show().filter(function () {
+                var text = $(this).find("#plantype_row").text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    });
+</script>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

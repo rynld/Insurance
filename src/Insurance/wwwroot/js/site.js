@@ -1,8 +1,10 @@
 ﻿// Write your Javascript code.
+$("#transaction_table").dataTable();
+$("#customer_table").dataTable();
 
 $('#name_filter').keyup(function () {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    var rows = $('#transaction_table tr');
+    var rows = $('#transaction_table_body tr');
     rows.show().filter(function () {
         var text = $(this).find("#name_row").text().replace(/\s+/g, ' ').toLowerCase();
         return !~text.indexOf(val);
@@ -11,7 +13,7 @@ $('#name_filter').keyup(function () {
 
 $('#plantype_filter').keyup(function () {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    var rows = $('#transaction_table tr');
+    var rows = $('#transaction_table_body tr');
     rows.show().filter(function () {
         var text = $(this).find("#plantype_row").text().replace(/\s+/g, ' ').toLowerCase();
         return !~text.indexOf(val);
@@ -21,7 +23,7 @@ $('#plantype_filter').keyup(function () {
 
 function complete(column_id, input_id) {
     var avaiblestag = [];
-    cadena = "#transaction_table tr #" + column_id
+    cadena = "#transaction_table_body tr #" + column_id
 
     $(cadena).each(function (data) {
         avaiblestag.push(this.textContent);
@@ -40,7 +42,7 @@ $("#startdate_filter").datepicker({
         var selected_year = parseInt(inst.selectedYear);
         var selected_day = parseInt(inst.selectedDay);
 
-        var rows = $('#transaction_table tr');
+        var rows = $('#transaction_table_body tr');
         rows.show().filter(function () {
             var text = $(this).find("#transactiondate_row").text();
             var d = $.datepicker.parseDate("mm/dd/yy", text);

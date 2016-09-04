@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Insurance.Models.InsuranceViewModels
 {
-    public class Customer
+    public class CustomerViewModel
     {
         public int Id { get; set; }
 
@@ -15,9 +15,10 @@ namespace Insurance.Models.InsuranceViewModels
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; }       
 
-        public virtual PlanType PlanType { get; set; }
-
+        public string PlanType { get; set; }      
+        
+                
     }
 }

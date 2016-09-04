@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Insurance.Models.InsuranceViewModels;
 using Insurance.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Insurance.Controllers
 {
@@ -17,12 +18,15 @@ namespace Insurance.Controllers
         public InsuranceController(ApplicationDbContext context)
         {
             this.context = context;
+            
             //AddInitialData();
 
         }
 
         public void AddInitialData()
         {
+
+
             //this.context.InsuranceCompanies.Add(new InsuranceCompany() {
             //    Name = "Medicare",
             //    PlanTypes = new List<PlanType>() {
@@ -51,12 +55,13 @@ namespace Insurance.Controllers
 
             for (int i = 0; i < 20; i++)
             {
-                this.context.Transactions.Add(new Transaction() {
+                this.context.Transactions.Add(new Transaction()
+                {
                     DepositedMoney = r.Next(30),
-                    Name = "john doe"+r.Next(4).ToString(),
-                    PlanType = list[r.Next(list.Count)].Name,
-                    TransactionDate = new DateTime(2016,r.Next(1,13),r.Next(1,28))
-                 
+                    ClientId = r.Next(3,8),
+                    PlanType = list[r.Next(list.Count)],
+                    TransactionDate = new DateTime(2016, r.Next(1, 13), r.Next(1, 28))
+
                 });
             }
             this.context.SaveChanges();
@@ -75,18 +80,24 @@ namespace Insurance.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCustomer(Customer c)
+        public IActionResult AddCustomer(CustomerViewModel c)
         {
-            this.context.Add(c);
+            var new_customer = new Customer()
+            {
+                Name = c.Name,
+                Email = c.Email,
+                PlanType = this.context.PlanTypes.Where(x => x.Name == c.PlanType).First()
+            };
+
+            this.context.Add(new_customer);
             this.context.SaveChanges();
             return RedirectToAction("ShowCustomers");
         }
 
         public IActionResult ShowCustomers()
-        {
-            return View(this.context.Customers.ToList());
+        {            
+            return View(this.context.Customers.Include(u=>u.PlanType).ToList());
         }
-
         
         public JsonResult InsuranceTypes(string insuranceid)
         {
@@ -99,11 +110,11 @@ namespace Insurance.Controllers
             return new JsonResult(res);
         }
 
-
         public IActionResult Transaction()
         {
-
-            return View(this.context.Transactions.ToList());
+            var trans = this.context.Transactions.Include(t => t.Client).Include(t => t.PlanType).ToList();
+            
+            return View(trans);
         }
 
 

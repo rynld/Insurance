@@ -7,7 +7,7 @@
 
 <h2>ShowCustomers</h2>
 
-<table class="table table-striped">
+<table class="table table-striped table-bordered" id="customer_table">
     <thead>
         <tr>
             <td>Name</td>
@@ -21,7 +21,14 @@
             <tr>
                 <td>@item.Name</td>
                 <td>@item.Email</td>
-                <td>@item.PlanType</td>
+                @if (item.PlanType != null)
+                {
+                    <td>@item.PlanType.Name</td>
+                }
+                else
+                {
+                    <td>None</td>
+                }
             </tr>
         }
     </tbody>

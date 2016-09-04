@@ -1,13 +1,13 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 80px;
+    padding-bottom: 10px;
 }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 65px;
+    padding-right: 40px;
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
@@ -50,6 +50,7 @@ textarea {
 }
 
 .panel_search{
-    padding-left: 50px;
-    padding-top:40px;
+    padding-left: 0px;
+    padding-top:30px;
 }
+

@@ -8,6 +8,7 @@
     "jquery-validation-unobtrusive": "3.2.6",
     "semantic": "2.1.8",
     "bootstrap-datepicker": "1.6.0",
-    "jquery-ui": "1.11.4"
+    "jquery-ui": "1.11.4",
+    "datatables": "1.10.11"
   }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Insurance.Models.InsuranceViewModels
 {
@@ -9,8 +10,10 @@ namespace Insurance.Models.InsuranceViewModels
         [Required]
         public string Name { get; set; }
 
-        public InsuranceCompany Company { get; set; }
+        public virtual InsuranceCompany Company { get; set; }
 
         public int CompanyId { get; set; }
+
+        public List<Customer> Customers { get; set; }
     }
 }

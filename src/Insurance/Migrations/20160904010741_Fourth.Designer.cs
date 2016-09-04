@@ -8,9 +8,10 @@ using Insurance.Data;
 namespace Insurance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160904010741_Fourth")]
+    partial class Fourth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -247,7 +248,7 @@ namespace Insurance.Migrations
             modelBuilder.Entity("Insurance.Models.InsuranceViewModels.Customer", b =>
                 {
                     b.HasOne("Insurance.Models.InsuranceViewModels.PlanType", "PlanType")
-                        .WithMany("Customers")
+                        .WithMany()
                         .HasForeignKey("PlanTypeId");
                 });
 

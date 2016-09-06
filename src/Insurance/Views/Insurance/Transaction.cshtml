@@ -13,7 +13,7 @@
 
         <ul class="nav nav-pills nav-stacked  panel_search">
             <li role="presentation" class="form-group">
-                <input class="form-control" type="text" id="name_filter" placeholder="Search forname" />
+                <input class="form-control" type="text" id="name_filter" placeholder="Search for name" />
                 <i class="glyphicon glyphicon-search form-control-feedback"></i>
             </li>
             <li role="presentation" class="form-group">
@@ -28,6 +28,9 @@
             <li role="presentation" class="form-group">
                 <input class="form-control" type="text" id="enddate_filter" placeholder="End date" />
                 <i class="glyphicon glyphicon-search form-control-feedback"></i>
+            </li>
+            <li role="presentation" class="form-group" onclick="filter_by_date()">                
+                <button class="btn btn-primary" >Filter</button>
             </li>
         </ul>
     </div>
@@ -44,7 +47,7 @@
             </thead>
             <tbody id="transaction_table_body">
                 @foreach (var item in Model)
-                {
+            {
                     <tr>
                         <td id="name_row">@item.Client.Name</td>
                         <td id="money_row">@item.DepositedMoney</td>
@@ -58,23 +61,23 @@
     <div class="col-md-2">
         <h2><label class="label label-success ">4</label></h2>
     </div>
-
+</div>
 <script>
     $(document).ready(function () {
-        
-      
+
+
 
     });
 </script>
 
-    <div class="row">
-        <div class="col-md-12">
-            <div>
-                <a asp-action="Index">Back to List</a>
-            </div>
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <a asp-action="Index">Back to List</a>
         </div>
-        
     </div>
+
+</div>
 
 
 @section Scripts {

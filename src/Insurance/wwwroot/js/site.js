@@ -41,21 +41,48 @@ $("#startdate_filter").datepicker({
         var selected_month = parseInt(inst.selectedMonth);
         var selected_year = parseInt(inst.selectedYear);
         var selected_day = parseInt(inst.selectedDay);
-
-        var rows = $('#transaction_table_body tr');
-        rows.show().filter(function () {
-            var text = $(this).find("#transactiondate_row").text();
-            var d = $.datepicker.parseDate("mm/dd/yy", text);
-            
-            if (parseInt(d.getFullYear()) < selected_year) return true;
-            if (parseInt(d.getMonth()) < selected_month) return true;
-            if (parseInt(d.getDate()) < selected_day) return true;
-            return false;
-            //return !~text.indexOf(val);
-        }).hide();
     }
 });
 
 
 $("#enddate_filter").datepicker();
+
+function filter_by_date()
+{
+   
+    var inidate = $("#startdate_filter").datepicker("getDate");
+    var enddate= $("#enddate_filter").datepicker("getDate");
+    
+    var rows = $('#transaction_table_body tr');
+    rows.show().filter(function () {
+        var text = $(this).find("#transactiondate_row").text();
+        var d = $.datepicker.parseDate("mm/dd/yy", text);
+       
+        if (compareDates(inidate, d) <= 0 && compareDates(d, enddate) <= 0) return false;
+       return true;
+    }).hide();
+}
+
+function compareDates(x,y)
+{
+    //return -1 if x is lower than y 0 if equals 1 otherwise
+    var x_day = parseInt(x.getDate());
+    var x_month = parseInt(x.getMonth());//january is the 0 month
+    var x_year = parseInt(x.getFullYear());
+
+    var y_day = parseInt(y.getDate());
+    var y_month = parseInt(y.getMonth());
+    var y_year = parseInt(y.getFullYear());
+
+    console.log(y_day, y_month, y_year);
+    if (x_year < y_year) return -1;
+    if (x_year > y_year) return 1;
+    if (x_month < y_month) return -1;
+    if (x_month > y_month) return 1;
+    if (x_day < y_day) return -1;
+    if (x_day > y_day) return 1;
+    return 0;
+
+
+}
 

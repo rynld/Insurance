@@ -1,4 +1,6 @@
-﻿// Write your Javascript code.
+﻿
+
+// Write your Javascript code.
 $("#transaction_table").dataTable();
 $("#customer_table").dataTable();
 
@@ -20,7 +22,6 @@ $('#plantype_filter').keyup(function () {
     }).hide();
 });
 
-
 function complete(column_id, input_id) {
     var avaiblestag = [];
     cadena = "#transaction_table_body tr #" + column_id
@@ -36,15 +37,7 @@ function complete(column_id, input_id) {
 complete("name_row", "name_filter");
 complete("plantype_row", "plantype_filter");
 
-$("#startdate_filter").datepicker({
-    onSelect: function (dateText, inst) {
-        var selected_month = parseInt(inst.selectedMonth);
-        var selected_year = parseInt(inst.selectedYear);
-        var selected_day = parseInt(inst.selectedDay);
-    }
-});
-
-
+$("#startdate_filter").datepicker();
 $("#enddate_filter").datepicker();
 
 function filter_by_date()
@@ -86,3 +79,11 @@ function compareDates(x,y)
 
 }
 
+
+function validate_data()
+{
+    if ($("#plantype").val() == "none" || $("#insurancename") == "none") {
+        event.preventDefault();
+        
+    }
+}

@@ -47,7 +47,7 @@
             
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Create" onclick="validate_data(event);" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -58,20 +58,25 @@
         $("#insurancename").change(function () {
             
             var select_id = $("#insurancename option:selected").attr("value");
-          
-            $.ajax({
-                type: "GET",
-                url: "InsuranceTypes",
-                data:{insuranceid:select_id},
-                error: function () { alert("error")},
-                success: function (data) {
-                    var dropdown = $("#plantype");
-                    dropdown.empty();
-                    $.each(data, function (index, value) {
-                        dropdown.append($('<option></option>').val(value.text).html(value.text));
-                    });
-                }
-            })
+            if (select_id == "none") {
+                $("#plantype").empty();
+                $("#plantype").append($('<option></option>').val("none").html("Select one insurance first"));
+            }
+            else {
+                $.ajax({
+                    type: "GET",
+                    url: "InsuranceTypes",
+                    data: { insuranceid: select_id },
+                    error: function () { alert("error") },
+                    success: function (data) {
+                        var dropdown = $("#plantype");
+                        dropdown.empty();
+                        $.each(data, function (index, value) {
+                            dropdown.append($('<option></option>').val(value.text).html(value.text));
+                        });
+                    }
+                })
+            }
             
             
         });

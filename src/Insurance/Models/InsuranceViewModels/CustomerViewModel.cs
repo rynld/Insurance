@@ -17,6 +17,7 @@ namespace Insurance.Models.InsuranceViewModels
         [EmailAddress]
         public string Email { get; set; }       
 
+        
         public string PlanType { get; set; }      
         
                 

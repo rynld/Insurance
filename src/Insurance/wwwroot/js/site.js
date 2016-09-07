@@ -84,6 +84,9 @@ function validate_data()
 {
     if ($("#plantype").val() == "none" || $("#insurancename") == "none") {
         event.preventDefault();
-        
+        $("#submit_button").attr("data-target", "#myModal");
+    }
+    else {
+        $("#submit_button").removeAttr("data-target");
     }
 }

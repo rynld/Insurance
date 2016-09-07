@@ -10,7 +10,7 @@
     <div class="form-horizontal">
         <h4>Customer</h4>
         <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>        
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Name" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -25,38 +25,56 @@
                 <span asp-validation-for="Email" class="text-danger" />
             </div>
         </div>
-       
-        
+
+
         <div class="form-group">
             <label class="col-md-2 control-label">Insurance Name</label>
             <div class="col-md-10">
                 <select id="insurancename" class="form-control" asp-items="ViewBag.InsuranceNames">
                     <option value="none">Please select one</option>
-                </select>
+                </select>              
             </div>
         </div>
-        
+
         <div class="form-group">
             <label asp-for="PlanType" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select id="plantype" asp-for="PlanType" class="form-control" >
+                <select id="plantype" asp-for="PlanType" class="form-control">
                     <option value="none">Select one insurance first</option>
                 </select>
             </div>
         </div>
-            
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" onclick="validate_data(event);" class="btn btn-success" />
+                <input type="submit" data-toggle="modal" value="Create" id="submit_button"
+                       onclick="validate_data(event);" class="btn btn-success" />
             </div>
         </div>
+
+
     </div>
 </form>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header modal-header-warning">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Error</h4>
+            </div>
+            <div class="modal-body">
+                You have to select an insurance company
+            </div>
+           
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function () {
         $("#insurancename").change(function () {
-            
+
             var select_id = $("#insurancename option:selected").attr("value");
             if (select_id == "none") {
                 $("#plantype").empty();
@@ -77,8 +95,8 @@
                     }
                 })
             }
-            
-            
+
+
         });
     });
 </script>

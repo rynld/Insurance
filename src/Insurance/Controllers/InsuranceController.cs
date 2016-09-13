@@ -8,6 +8,7 @@ using Insurance.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Insurance.Controllers
 {
     public class InsuranceController : Controller
@@ -82,15 +83,15 @@ namespace Insurance.Controllers
         [HttpPost]
         public IActionResult AddCustomer(CustomerViewModel c)
         {
-            var new_customer = new Customer()
-            {
-                Name = c.Name,
-                Email = c.Email,
-                PlanType = this.context.PlanTypes.Where(x => x.Name == c.PlanType).First()
-            };
+            //var new_customer = new Customer()
+            //{
+            //    Name = c.Name,
+            //    Email = c.Email,
+            //    PlanType = this.context.PlanTypes.Where(x => x.Name == c.PlanType).First()
+            //};
 
-            this.context.Add(new_customer);
-            this.context.SaveChanges();
+            //this.context.Add(new_customer);
+            //this.context.SaveChanges();
             return RedirectToAction("ShowCustomers");
         }
 
@@ -117,6 +118,18 @@ namespace Insurance.Controllers
             return View(trans);
         }
 
+
+        public IActionResult PaymentHistory()
+        {           
+            return View(this.context.Payments.Include(p=>p.Customer).Include(p=>p.InsuranceCompany).
+                ToList());
+        }
+
+
+        public JsonResult AddPaymentsFromFile(string address)
+        {
+            return null;
+        }
 
     }
 }

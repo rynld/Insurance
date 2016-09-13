@@ -8,18 +8,44 @@ namespace Insurance.Models.InsuranceViewModels
 {
     public class CustomerViewModel
     {
-        public int Id { get; set; }
+        public int CustomerId { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        public string MiddleName { get; set; }
+
+        [Required]
+        public DateTime DateOfBirth { get; set; }
+
+        
+        public string SocialSecurity { get; set; }
+
+
+        public string StateOfBith { get; set; }
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; }       
+        public string Email { get; set; }
 
-        
-        public string PlanType { get; set; }      
-        
-                
+        [Required]
+        [Phone]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+
+        public string State { get; set; }
+
+        public string ZipCode { get; set; }
+
+        public double AnnualIncome{ get; set; }
+
+        public string PlanType { get; set; }
+
+
     }
 }

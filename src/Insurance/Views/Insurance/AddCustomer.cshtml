@@ -8,14 +8,56 @@
 
 <form asp-action="AddCustomer">
     <div class="form-horizontal">
-        <h4>Customer</h4>
+        <h4>CustomerViewModel</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <label asp-for="CustomerId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger" />
+                <input asp-for="CustomerId" class="form-control" />
+                <span asp-validation-for="CustomerId" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MiddleName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DateOfBirth" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input id="dateofbirth" asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SocialSecurity" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="SocialSecurity" class="form-control" />
+                <span asp-validation-for="SocialSecurity" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="StateOfBith" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="StateOfBith" class="form-control" />
+                <span asp-validation-for="StateOfBith" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
@@ -25,14 +67,47 @@
                 <span asp-validation-for="Email" class="text-danger" />
             </div>
         </div>
-
-
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="State" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ZipCode" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ZipCode" class="form-control" />
+                <span asp-validation-for="ZipCode" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="AnnualIncome" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="AnnualIncome" class="form-control" />
+                <span asp-validation-for="AnnualIncome" class="text-danger" />
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-md-2 control-label">Insurance Name</label>
             <div class="col-md-10">
                 <select id="insurancename" class="form-control" asp-items="ViewBag.InsuranceNames">
                     <option value="none">Please select one</option>
-                </select>              
+                </select>
             </div>
         </div>
 
@@ -44,19 +119,17 @@
                 </select>
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" data-toggle="modal" value="Create" id="submit_button"
                        onclick="validate_data(event);" class="btn btn-success" />
             </div>
         </div>
-
-
     </div>
 </form>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header modal-header modal-header-warning">
@@ -66,12 +139,19 @@
             <div class="modal-body">
                 You have to select an insurance company
             </div>
-           
+
         </div>
     </div>
 </div>
 
+    -->
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
 <script type="text/javascript">
+
     $(document).ready(function () {
         $("#insurancename").change(function () {
 
@@ -100,10 +180,6 @@
         });
     });
 </script>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

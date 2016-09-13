@@ -39,6 +39,7 @@ complete("plantype_row", "plantype_filter");
 
 $("#startdate_filter").datepicker();
 $("#enddate_filter").datepicker();
+$("#dateofbirth").datepicker();
 
 function filter_by_date()
 {

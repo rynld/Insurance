@@ -1,0 +1,67 @@
+@model IEnumerable<Insurance.Models.InsuranceViewModels.SalePayment>
+
+@{
+    ViewData["Title"] = "PaymentHistory";
+}
+
+<h2>PaymentHistory</h2>
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <input id="payment_file" class="form-control" type="text" />
+            <label class="btn btn-primary form-control" for="my-file-selector">
+                <input id="my-file-selector" type="file" style="display:none;" onchange="$('#payment_file').val($(this).val());">
+                Add File
+            </label>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success form-control" onclick="">Add</button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Amount Paid</th>
+                    <th>Statement Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>@item.Customer.Name</td>
+                        <td>@item.AmountPaid</td>
+                        <td>@item.DatePayment</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script>
+   $(document).ready(function(){
+       $.ajax({
+           type: "GET",
+           url: "AddPaymentsFromFile",
+           data: { adress: $("#payment_file").val() },
+           error: function () { alert("error adding excel file") },
+           success: function () { alert("all was ok") }
+           
+       })
+   })
+
+   
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

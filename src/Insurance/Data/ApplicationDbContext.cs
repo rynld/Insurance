@@ -37,6 +37,8 @@ namespace Insurance.Data
         public DbSet<PlanType> PlanTypes { get; set; }
 
         public DbSet<Transaction> Transactions { get; set; }
+
+        public DbSet<SalePayment> Payments { get; set; }
     }
 
   

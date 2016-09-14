@@ -7,7 +7,9 @@ using Insurance.Models.InsuranceViewModels;
 using Insurance.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
+using Insurance.Data.Auxiliar;
+using System.IO;
+using CsvHelper;
 
 namespace Insurance.Controllers
 {
@@ -126,9 +128,23 @@ namespace Insurance.Controllers
         }
 
 
-        public JsonResult AddPaymentsFromFile(string address)
+        public IActionResult AddPaymentsFromFile(string path = "C:\\Users\\Reynaldo\\Desktop\\test.csv")
         {
-            return null;
+            List<PaymentData> allValues;
+            
+            
+            using (TextReader fileReader = System.IO.File.OpenText(path))
+            {
+                var csv = new CsvReader(fileReader);                
+                allValues = csv.GetRecords<PaymentData>().ToList();
+                
+                //foreach (var item in allValues)
+                //{
+                //    var result = this.context.Customers.Where(c => c.Name == item.CustomerName).ToList();
+                //}
+            }
+            
+            return this.Json(allValues);
         }
 
     }

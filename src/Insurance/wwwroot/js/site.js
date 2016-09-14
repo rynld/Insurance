@@ -41,24 +41,22 @@ $("#startdate_filter").datepicker();
 $("#enddate_filter").datepicker();
 $("#dateofbirth").datepicker();
 
-function filter_by_date()
-{
-   
+function filter_by_date() {
+
     var inidate = $("#startdate_filter").datepicker("getDate");
-    var enddate= $("#enddate_filter").datepicker("getDate");
-    
+    var enddate = $("#enddate_filter").datepicker("getDate");
+
     var rows = $('#transaction_table_body tr');
     rows.show().filter(function () {
         var text = $(this).find("#transactiondate_row").text();
         var d = $.datepicker.parseDate("mm/dd/yy", text);
-       
+
         if (compareDates(inidate, d) <= 0 && compareDates(d, enddate) <= 0) return false;
-       return true;
+        return true;
     }).hide();
 }
 
-function compareDates(x,y)
-{
+function compareDates(x, y) {
     //return -1 if x is lower than y 0 if equals 1 otherwise
     var x_day = parseInt(x.getDate());
     var x_month = parseInt(x.getMonth());//january is the 0 month
@@ -81,8 +79,7 @@ function compareDates(x,y)
 }
 
 
-function validate_data()
-{
+function validate_data() {
     if ($("#plantype").val() == "none" || $("#insurancename") == "none") {
         event.preventDefault();
         $("#submit_button").attr("data-target", "#myModal");
@@ -90,4 +87,23 @@ function validate_data()
     else {
         $("#submit_button").removeAttr("data-target");
     }
+}
+
+
+function showpayments(data)
+{    
+    
+    for (var i = 0; i < data.length; i++) {
+        var row = document.createElement("tr");
+        for (var x in data[i]) {
+            if (x == "nsPaymentID") continue;
+
+            var col = document.createElement("td");
+            var text = document.createTextNode(data[i][x])
+            col.appendChild(text);
+            row.appendChild(col);
+        }
+        $("#payments_table_body").append(row);
+    }
+   
 }

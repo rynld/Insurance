@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Insurance.Data.Auxiliar;
 using System.IO;
 using CsvHelper;
+using System.Text.RegularExpressions;
 
 namespace Insurance.Controllers
 {
@@ -138,8 +139,9 @@ namespace Insurance.Controllers
             {
                 var csv = new CsvReader(fileReader);
                 allValues = csv.GetRecords<PaymentData>().ToList();
-                var customers = this.context.Customers.ToDictionary(c => c.Name);
-
+                var customers = this.context.Customers.Select(c=> Regex.Replace(c.Name + " " + c.MiddleName + " " + c.LastName, @"\s+"," "))
+                    .Distinct().ToDictionary(c=>c);
+                
                 foreach (var item in allValues)
                 {
                     indatabase.Add(customers.ContainsKey(item.CustomerName));

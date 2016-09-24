@@ -92,14 +92,19 @@ function validate_data() {
 
 function showpayments(data)
 {    
-    
-    for (var i = 0; i < data.length; i++) {
+    var payment_info = data[0];
+    var indatabase = data[1];
+    console.log(payment_info.length)
+    for (var i = 0; i < payment_info.length; i++) {
         var row = document.createElement("tr");
-        for (var x in data[i]) {
+        
+        if(indatabase[i] == false)
+          row.className= "bg-danger";
+        for (var x in payment_info[i]) {
             if (x == "nsPaymentID") continue;
 
             var col = document.createElement("td");
-            var text = document.createTextNode(data[i][x])
+            var text = document.createTextNode(payment_info[i][x])
             col.appendChild(text);
             row.appendChild(col);
         }

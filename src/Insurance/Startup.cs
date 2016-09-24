@@ -12,6 +12,11 @@ using Microsoft.Extensions.Logging;
 using Insurance.Data;
 using Insurance.Models;
 using Insurance.Services;
+using System.IO;
+using CsvHelper;
+using Insurance.Models.InsuranceViewModels;
+using Insurance.Data.Auxiliar;
+using AutoMapper;
 
 namespace Insurance
 {
@@ -66,6 +71,50 @@ namespace Insurance
             loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
+
+
+            //Seed data
+            using (var context = app.ApplicationServices.GetService<ApplicationDbContext>())
+            {
+                if (env.IsDevelopment())
+                {
+                   /* context.Database.OpenConnection();
+
+                    context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Customers ON");
+                 
+                    //seed code here
+                    string path = "C:\\Users\\Reynaldo\\Desktop\\playin\\CustomerT.csv";
+
+                    using (TextReader fileReader = System.IO.File.OpenText(path))
+                    {
+                        Mapper.Initialize(cfg =>
+                        {
+                            cfg.CreateMap<CustomerViewModel, Customer>()
+                             .ForMember(dto => dto.Name, conf => conf.MapFrom(ol => ol.FirstName))
+                             .ForMember(dto => dto.Id, conf => conf.MapFrom(ol => ol.CustomerId))                             
+                             .ForMember(dto=>dto.PlanType,conf=>conf.Ignore())
+                             .ForMember(dto => dto.SalePayments, conf => conf.Ignore()); ;
+                                
+                            cfg.CreateMap<string, double>().ConvertUsing(Convert.ToDouble);
+                            cfg.CreateMap<string, DateTime>().ConvertUsing(new DateTimeTypeConverter());
+                        });
+                        var reader = new CsvReader(fileReader);
+                        reader.Configuration.RegisterClassMap<CustomerViewModelMap>();
+                        var allvalues = reader.GetRecords<CustomerViewModel>();
+                        foreach (var item in allvalues)
+                        {
+                            var x = Mapper.Map<Customer>(item);
+                            context.Customers.Add(x);
+                            
+                        }
+                    }
+                    
+                    context.SaveChanges();
+                    context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Customers OFF");
+                    context.SaveChanges();
+                    context.Database.CloseConnection();*/
+                }
+            }
 
             if (env.IsDevelopment())
             {

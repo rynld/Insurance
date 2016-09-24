@@ -16,5 +16,6 @@ namespace Insurance.Data.Auxiliar
 
         public string StatementDate { get; set; }
 
+       
     }
 }

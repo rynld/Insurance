@@ -21,11 +21,11 @@ namespace Insurance.Models.InsuranceViewModels
         [Required]
         public DateTime DateOfBirth { get; set; }
 
-        
+
         public string SocialSecurity { get; set; }
 
 
-        public string StateOfBith { get; set; }
+        public string StateOfBirth { get; set; }
 
         [Required]
         [EmailAddress]
@@ -42,7 +42,7 @@ namespace Insurance.Models.InsuranceViewModels
 
         public string ZipCode { get; set; }
 
-        public double AnnualIncome{ get; set; }
+        public string AnnualIncome { get; set; }
 
         public string PlanType { get; set; }
 

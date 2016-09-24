@@ -9,7 +9,6 @@ namespace Insurance.Models.InsuranceViewModels
     {
         public int SalePaymentId { get; set; }
 
-
         public Customer Customer { get; set; }
 
         public DateTime DatePayment { get; set; }

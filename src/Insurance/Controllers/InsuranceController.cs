@@ -21,7 +21,7 @@ namespace Insurance.Controllers
         public InsuranceController(ApplicationDbContext context)
         {
             this.context = context;
-            
+
             //AddInitialData();
 
         }
@@ -61,7 +61,7 @@ namespace Insurance.Controllers
                 this.context.Transactions.Add(new Transaction()
                 {
                     DepositedMoney = r.Next(30),
-                    ClientId = r.Next(3,8),
+                    ClientId = r.Next(3, 8),
                     PlanType = list[r.Next(list.Count)],
                     TransactionDate = new DateTime(2016, r.Next(1, 13), r.Next(1, 28))
 
@@ -72,12 +72,12 @@ namespace Insurance.Controllers
 
         public IActionResult AddCustomer()
         {
-            
+
             List<SelectListItem> res = new List<SelectListItem>();
 
-            foreach (var item in this.context.InsuranceCompanies)            
+            foreach (var item in this.context.InsuranceCompanies)
                 res.Add(new SelectListItem() { Value = item.Id.ToString(), Text = item.Name });
-            
+
             this.ViewBag.InsuranceNames = res;
             return View();
         }
@@ -98,32 +98,33 @@ namespace Insurance.Controllers
         }
 
         public IActionResult ShowCustomers()
-        {            
-            return View(this.context.Customers.Include(u=>u.PlanType).ToList());
+        {
+            
+            return View(this.context.Customers.Include(u => u.PlanType).ToList());
         }
-        
+
         public JsonResult InsuranceTypes(string insuranceid)
         {
             var plans = this.context.PlanTypes.Where(x => x.Company.Id == int.Parse(insuranceid));
-            
+
             List<SelectListItem> res = new List<SelectListItem>();
-            foreach (var item in plans)            
+            foreach (var item in plans)
                 res.Add(new SelectListItem() { Value = item.Id.ToString(), Text = item.Name });
-                        
+
             return new JsonResult(res);
         }
 
         public IActionResult Transaction()
         {
             var trans = this.context.Transactions.Include(t => t.Client).Include(t => t.PlanType).ToList();
-            
+
             return View(trans);
         }
 
 
         public IActionResult PaymentHistory()
-        {           
-            return View(this.context.Payments.Include(p=>p.Customer).Include(p=>p.InsuranceCompany).
+        {
+            return View(this.context.Payments.Include(p => p.Customer).Include(p => p.InsuranceCompany).
                 ToList());
         }
 
@@ -131,20 +132,21 @@ namespace Insurance.Controllers
         public IActionResult AddPaymentsFromFile(string path = "C:\\Users\\Reynaldo\\Desktop\\test.csv")
         {
             List<PaymentData> allValues;
-            
-            
+
+            List<bool> indatabase = new List<bool>();
             using (TextReader fileReader = System.IO.File.OpenText(path))
             {
-                var csv = new CsvReader(fileReader);                
+                var csv = new CsvReader(fileReader);
                 allValues = csv.GetRecords<PaymentData>().ToList();
-                
-                //foreach (var item in allValues)
-                //{
-                //    var result = this.context.Customers.Where(c => c.Name == item.CustomerName).ToList();
-                //}
+                var customers = this.context.Customers.ToDictionary(c => c.Name);
+
+                foreach (var item in allValues)
+                {
+                    indatabase.Add(customers.ContainsKey(item.CustomerName));
+                }
             }
-            
-            return this.Json(allValues);
+
+            return this.Json(new object[] { allValues, indatabase });
         }
 
     }

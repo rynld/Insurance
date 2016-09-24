@@ -8,9 +8,10 @@ using Insurance.Data;
 namespace Insurance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160922024008_tenth")]
+    partial class tenth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -67,10 +68,13 @@ namespace Insurance.Migrations
 
             modelBuilder.Entity("Insurance.Models.InsuranceViewModels.Customer", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address")
                         .IsRequired();
+
+                    b.Property<double>("AnnualIncome");
 
                     b.Property<DateTime>("DateOfBirth");
 

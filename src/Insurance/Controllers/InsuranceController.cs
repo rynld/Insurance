@@ -11,20 +11,26 @@ using Insurance.Data.Auxiliar;
 using System.IO;
 using CsvHelper;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Insurance.Controllers
 {
     public class InsuranceController : Controller
-    {
-
+    {        
         ApplicationDbContext context;
 
         public InsuranceController(ApplicationDbContext context)
         {
             this.context = context;
-
+            //context.Database.OpenConnection();
+            //context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Customers ON");
+            //this.context.Customers.Add(new Customer() {
+            //    Name = "pepe"
+            //});
+            //this.context.Database.CloseConnection();
+            //this.context.SaveChanges();
             //AddInitialData();
-
         }
 
         public void AddInitialData()
@@ -86,22 +92,48 @@ namespace Insurance.Controllers
         [HttpPost]
         public IActionResult AddCustomer(CustomerViewModel c)
         {
-            //var new_customer = new Customer()
-            //{
-            //    Name = c.Name,
-            //    Email = c.Email,
-            //    PlanType = this.context.PlanTypes.Where(x => x.Name == c.PlanType).First()
-            //};
+            var new_customer = new Customer()
+            {               
+                Name = c.FirstName,
+                LastName = c.LastName,
+                MiddleName = c.MiddleName,
+                FullName = Regex.Replace(c.FirstName + " " + c.MiddleName + " " + c.LastName, @"\s+", " "),
+                Email = c.Email,
+                Address = c.Address,
+                PhoneNumber = c.PhoneNumber,
+                SocialSecurity = c.SocialSecurity,
+                State = c.State,
+                StateOfBirth = c.StateOfBirth,
+                ZipCode = c.ZipCode,
+                DateOfBirth = c.DateOfBirth
+            };
+            this.context.Customers.Add(new_customer);
+            this.context.SaveChanges();
 
-            //this.context.Add(new_customer);
-            //this.context.SaveChanges();
+            //Add new sale
+            var plan = this.context.PlanTypes.First(p => p.Name == c.PlanType);
+
+            var newsale = new Sale()
+            {
+                Customer = this.context.Customers.Single(cus => cus == new_customer),
+                DirectAgent = c.DirectAgent,
+                ReferringAgent = c.ReferringAgent,
+                LeadAgent = c.LeadAgent,
+                ProductName = plan,
+                Carrier = this.context.InsuranceCompanies.First(i => i.Id == plan.CompanyId),
+                EffectiveDate = c.EffectiveDate,
+                TerminationDate = c.TerminationDate
+
+            };
+            this.context.Sales.Add(newsale);
+            this.context.SaveChanges();
             return RedirectToAction("ShowCustomers");
         }
 
         public IActionResult ShowCustomers()
         {
-            
-            return View(this.context.Customers.Include(u => u.PlanType).ToList());
+
+            return View(this.context.Customers.ToList());
         }
 
         public JsonResult InsuranceTypes(string insuranceid)
@@ -122,15 +154,18 @@ namespace Insurance.Controllers
             return View(trans);
         }
 
-
         public IActionResult PaymentHistory()
         {
-            return View(this.context.Payments.Include(p => p.Customer).Include(p => p.InsuranceCompany).
-                ToList());
+            return View(this.context.Payments.ToList());
+        }
+        public IActionResult Sales()
+        {
+            return View(this.context.Sales.Include(p => p.Customer).Include(p => p.ProductName)
+                .Include(p => p.Carrier).ToList());
         }
 
 
-        public IActionResult AddPaymentsFromFile(string path = "C:\\Users\\Reynaldo\\Desktop\\test.csv")
+        public IActionResult AddPaymentsFromFile(string path)
         {
             List<PaymentData> allValues;
 
@@ -139,16 +174,103 @@ namespace Insurance.Controllers
             {
                 var csv = new CsvReader(fileReader);
                 allValues = csv.GetRecords<PaymentData>().ToList();
-                var customers = this.context.Customers.Select(c=> Regex.Replace(c.Name + " " + c.MiddleName + " " + c.LastName, @"\s+"," "))
-                    .Distinct().ToDictionary(c=>c);
-                
+                var customers = this.context.Customers.Select(c => Regex.Replace(c.Name + " " + c.MiddleName + " " + c.LastName, @"\s+", " "))
+                    .Distinct().ToDictionary(c => c);
+
                 foreach (var item in allValues)
                 {
                     indatabase.Add(customers.ContainsKey(item.CustomerName));
+                    if (indatabase[indatabase.Count - 1])
+                    {
+                        this.context.Payments.Add(new SalePayment()
+                        {
+                            Customer = this.context.Customers.Where(c => c.FullName == item.CustomerName).First(),
+                            AmountPaid = double.Parse(item.AmountPaid.Substring(1)),
+                            DatePayment = Convert.ToDateTime(item.StatementDate)
+                        });
+                    }
                 }
             }
 
             return this.Json(new object[] { allValues, indatabase });
+        }
+
+        [HttpPost]
+        public IActionResult AddSalesFromFile(IFormFile file)
+        {
+            List<SaleData> allValues;
+
+
+            using (FileStream fs = System.IO.File.Create(file.FileName))
+            {
+                file.CopyTo(fs);
+                fs.Flush();
+            }
+
+            List<bool> indatabase = new List<bool>();
+            double aux;
+            using (TextReader fileReader = System.IO.File.OpenText(file.FileName))
+            {
+                var csv = new CsvReader(fileReader);
+                csv.Configuration.IgnoreHeaderWhiteSpace = true;
+                csv.Configuration.WillThrowOnMissingField = false;
+                allValues = csv.GetRecords<SaleData>().ToList();
+                var customers = this.context.Customers.Select(c => c.FullName)
+                    .Distinct().ToDictionary(c => c);
+
+                //context.Database.OpenConnection();
+                //context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Sales OFF");
+
+                foreach (var item in allValues)
+                {
+                    if (customers.ContainsKey(item.Customer))
+                    {
+                        var plan = this.context.PlanTypes.FirstOrDefault(p => p.Name == item.ProductName);
+                        //Avmed
+                        this.context.Sales.Add(new Sale()
+                        {
+                            Customer = this.context.Customers.First(c => c.FullName == item.Customer),
+                            DirectAgent = item.DirectAgt,
+                            ReferringAgent = item.ReferringAgt,
+                            LeadAgent = item.LeadAgt,
+                            ProductName = plan,
+                            Carrier = this.context.InsuranceCompanies.FirstOrDefault(c => c.Name == item.Carrier),
+                            Metal = item.Metal,
+                            MemberQuantity = int.Parse(item.MbrCT),
+                            EffectiveDate = (item.EffectiveDate != "") ? DateTime.Parse(item.EffectiveDate) : new DateTime(1000, 1, 1),
+                            TerminationDate = (item.TerminationDate != "") ? DateTime.Parse(item.TerminationDate) : new DateTime(3333, 1, 1),
+                            Premium = ((item.Carrier == "AvMed") ? ((double.TryParse(item.Premium.Substring(1), out aux)) ? double.Parse(item.Premium.Substring(1)) : double.NaN) : double.NaN)
+
+                        });
+                        //this.context.Sales.Add(new Sale()
+                        //{
+                        //    Customer = this.context.Customers.First(c => c.FullName == item.Customer),
+                        //    DirectAgent = item.DirectAgt,
+                        //    ReferringAgent = item.ReferringAgt,
+                        //    LeadAgent = item.LeadAgt,
+                        //    ProductName = plan,
+                        //    Carrier = this.context.InsuranceCompanies.FirstOrDefault(c => c.Name == item.Carrier),
+                        //    Metal = item.Metal,
+                        //    MemberQuantity = int.Parse(item.MbrCT),
+                        //    EffectiveDate = (item.EffectiveDate != "") ? DateTime.Parse(item.EffectiveDate) : new DateTime(1000, 1, 1),
+                        //    TerminationDate = (item.TerminationDate != "") ? DateTime.Parse(item.TerminationDate) : new DateTime(3333, 1, 1),
+
+
+                        //});
+                    }
+                    else
+                    {
+                        throw new Exception("tremendo problema");
+                    }
+                }
+
+                this.context.SaveChanges();
+                //context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Sales OFF");
+                //context.SaveChanges();
+                //context.Database.CloseConnection();
+            }
+            return new JsonResult("");
+
         }
 
     }

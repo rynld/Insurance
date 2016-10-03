@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,6 +46,20 @@ namespace Insurance.Models.InsuranceViewModels
         public string AnnualIncome { get; set; }
 
         public string PlanType { get; set; }
+
+        //Properties of sales
+
+        public string DirectAgent { get; set; }
+
+        public string ReferringAgent { get; set; }
+
+        [DisplayName("Lead Agent")]
+        public string LeadAgent { get; set; }
+
+
+        public DateTime EffectiveDate { get; set; }
+
+        public DateTime TerminationDate { get; set; }
 
 
     }

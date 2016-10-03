@@ -17,6 +17,7 @@ using CsvHelper;
 using Insurance.Models.InsuranceViewModels;
 using Insurance.Data.Auxiliar;
 using AutoMapper;
+using System.Text.RegularExpressions;
 
 namespace Insurance
 {
@@ -78,6 +79,12 @@ namespace Insurance
             {
                 if (env.IsDevelopment())
                 {
+                    //foreach (var item in context.Customers)
+                    //{
+                    //    item.FullName = Regex.Replace(item.Name + " " + item.MiddleName + " " + item.LastName, @"\s+", " ");
+                    //    context.Customers.Update(item);
+                    //}
+                    //context.SaveChanges();
                    /* context.Database.OpenConnection();
 
                     context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Customers ON");

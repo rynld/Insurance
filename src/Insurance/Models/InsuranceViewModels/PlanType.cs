@@ -15,5 +15,7 @@ namespace Insurance.Models.InsuranceViewModels
         public int CompanyId { get; set; }
 
         public List<Customer> Customers { get; set; }
+
+        public string Metal { get; set; }
     }
 }

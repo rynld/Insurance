@@ -45,7 +45,7 @@
         $.ajax({
             type: "GET",
             url: "AddPaymentsFromFile",
-            data: { address: $("#payment_file").val() },
+            data: { path: $("#payment_file").val() },
             error: function () { alert("errror")},
             success: function (data) { showpayments(data) }
 

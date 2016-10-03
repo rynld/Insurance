@@ -1,0 +1,47 @@
+SaleID,Customer,Agent Type,Direct Agt,Referring Agt,Lead Agt,Carrier,ProductName,Plan,Mbr CT,EffectiveDate,TerminationDate,Premium
+1,Janet Crucet,DA,Mary Saiz,,,AvMed,Engage,LB 600,1,1-Jan-16,31-Dec-16,$394.29 
+2,Alain Antonine Hachem,DA+LA,Mary Saiz,,Elise Klinsport,AvMed,Empower,LB 600,1,1-Jan-16,31-Dec-16,$282.30 
+3,Andrew J Smith,DA+LA,Mary Saiz,,Travis Agency,AvMed,Engage,LS 500,1,1-Jan-16,31-Dec-16,$257.81 
+4,Diego Capella,DA,Mary Saiz,,,AvMed,Engage,LS 400,1,1-Jan-16,31-Dec-16,$329.57 
+5,Dorothy Davis,DA,Mary Saiz,,,AvMed,Empower,LS 400,1,1-Jan-16,31-Dec-16,$819.85 
+7,Facundo Fraga,DA+LA,Mary Saiz,,Patricia H,AvMed,Empower,MS 400,1,1-Jan-16,31-Dec-16,$346.05 
+9,Jeanne Renee Kemper,DA+LA,Mary Saiz,,Travis Agency,AvMed,Agility,KB 100,1,1-Jan-16,31-Dec-16,$301.30 
+10,Jennifer Lucille Kurack,DA+LA,Mary Saiz,,Travis Agency,AvMed,Empower,MS 400,1,1-Jan-16,31-Dec-16,$176.36 
+12,Jorge Luis Diaz,DA+LA,Mary Saiz,,Patricia H,AvMed,Empower,MP 100,1,1-Jan-16,31-Dec-16,$947.19 
+13,Laida Hernandez,DA,Mary Saiz,,,AvMed,Engage,LS 400,1,1-Jan-16,31-Dec-16,$586.67 
+14,Lourdes L Del Pino,DA,Mary Saiz,,,AvMed,Empower,MG 200,1,1-Jan-16,31-Dec-16,$705.91 
+15,Peter Paul Grootens,DA,Mary Saiz,,,AvMed,Empower,MP 100,1,1-Jan-16,31-Dec-16,$955.58 
+16,Theresa Giroux,DA,Mary Saiz,,,AvMed,Engage,LG 200,1,1-Jan-16,31-Dec-16,$815.33 
+17,William Bevan,DA,Mary Saiz,,,AvMed,Empower,MB 600,1,1-Jan-16,31-Dec-16,$204.61 
+19,Dana Segal,DA+LA,Mary Saiz,,Travis Agency,AvMed,Empower,MP 100,1,1-Feb-16,31-Dec-16,$430.26 
+21,Nicholas Debenedetto,DA+LA,Mary Saiz,,Travis Agency,AvMed,Engage,LS 500,1,1-Feb-16,31-Dec-16,$773.42 
+22,Guilio Piccinonna,DA,Mary Saiz,,,AvMed,Engage,LS 500,1,1-Feb-16,31-Dec-16,$240.65 
+25,Jennifer M Grant,DA,Mary Saiz,,,AvMed,Engage,LG 200,1,1-Mar-16,31-Dec-16,$407.67 
+26,Hicham Sahbane,DA+LA,Mary Saiz,,Elise Klinsport,AvMed,Empower,MG 200,1,1-May-15,31-Dec-16,$457.10 
+27,Mary Saiz,DA,Mary Saiz,,,AvMed,Engage,MG 300,1,1-Feb-15,31-Dec-16,$714.30 
+29,Kristine Flook,DA,Mary Saiz,,,AvMed,Empower,MS 400,1,1-May-15,31-Dec-16,$387.99 
+32,Fatima Goni,DA+LA,Mary Saiz,,Patricia H,AvMed,Empower,MS 400,1,1-Jan-16,31-Dec-16,$343.83 
+33,Anna Elisabeth Grootens-De Fretes,DA,Mary Saiz,,,AvMed,Empower,MP 100,1,1-Jan-16,31-Dec-16,$858.05 
+34,Alejandro A Gonzalez-Del Pino,DA,Mary Saiz,,,AvMed,Empower,MG 200,1,1-Jan-16,31-Dec-16,$316.55 
+35,Alfredo Lopez,DA,Mary Saiz,,,AvMed,,,1,1-Apr-15,,$607.72 
+36,Ellen Klappholz,DA,Mary Saiz,,,AvMed,,,1,1-Mar-15,,"$1,056.28 "
+37,Sandra E Gomez,DA+LA,Mary Saiz,,Travis Agency,AvMed,,,1,1-Mar-15,,$310.49 
+38,Leonardo Gomez,DA+LA,Mary Saiz,,Travis Agency,AvMed,,,1,1-Mar-15,,$148.80 
+39,Maria Gonzalez Blanco,DA,Mary Saiz,,,AvMed,,,1,1-Apr-15,,$438.71 
+40,Esteban Camguilhem,DA,Mary Saiz,,,AvMed,,,1,1-Apr-15,,$223.58 
+41,Mathias Venning Malak,DA,Mary Saiz,,,AvMed,,,1,1-Apr-15,,$309.31 
+42,Jahn Kirchoff,DA+LA,Mary Saiz,,Travis Agency,AvMed,,,1,1-May-15,,$823.99 
+43,Matthew S Bagwell,DA+LA,Mary Saiz,,Travis Agency,AvMed,,,1,1-May-15,,$494.77 
+44,Dolores Collazo,DA+LA,Mary Saiz,,Travis Agency,AvMed,,,1,,,$394.42 
+45,Judith E Fernandez,DA+LA,Mary Saiz,,Travis Agency,AvMed,,,1,1-May-15,,$540.04 
+46,Ainara D Sanchez,DA+LA,Mary Saiz,,Travis Agency,AvMed,,,1,1-May-15,,$201.01 
+47,Kenneth Dyman,DA,Mary Saiz,,,AvMed,,,1,1-May-15,,$344.27 
+48,Brandon A Mosher,DA,Mary Saiz,,,AvMed,,,1,1-Jun-15,,$257.81 
+49,Marian Smeraldi-Lopez,DA,Mary Saiz,,,AvMed,,,1,1-Apr-15,,$765.78 
+50,Mylene Santana,DA,Mary Saiz,,,AvMed,,,1,1-Jul-15,,$619.33 
+51,Stephane Camguilhem,DA,Mary Saiz,,,AvMed,,,1,1-Apr-15,,$449.97 
+52,Cyndee Levy-Angulo,DA,Mary Saiz,,,AvMed,,,1,1-May-15,,$584.80 
+53,Liana Ycikson,DA,Mary Saiz,,,AvMed,,,1,1-Jul-15,,$592.95 
+54,Maria E Palacios,DA,Mary Saiz,,,AvMed,,,1,1-Aug-15,,$761.05 
+55,Debra J Allaire-Doyle,DA+LA,Mary Saiz,,Travis Agency,AvMed,Engage,LS 400,1,1-Apr-16,,$658.46 
+56,Mary-Lynn Greenstein,DA,Mary Saiz,,,AvMed,,,1,,,$753.75 

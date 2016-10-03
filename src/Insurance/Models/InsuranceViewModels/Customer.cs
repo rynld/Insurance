@@ -9,7 +9,7 @@ namespace Insurance.Models.InsuranceViewModels
 {
     public class Customer
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+       
         public int Id { get; set; }
 
         [Required]
@@ -20,13 +20,15 @@ namespace Insurance.Models.InsuranceViewModels
 
         public string MiddleName { get; set; }
 
+        public string FullName { get; set; }
+
         [Required]
         [EmailAddress]
         public string Email { get; set; }
 
-        public virtual PlanType PlanType { get; set; }
+        //public virtual PlanType PlanType { get; set; }
 
-        public IEnumerable<SalePayment> SalePayments { get; set; }
+        //public IEnumerable<SalePayment> SalePayments { get; set; }
 
         [Required]
         public DateTime DateOfBirth { get; set; }

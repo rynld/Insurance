@@ -77,6 +77,8 @@ namespace Insurance.Migrations
                     b.Property<string>("Email")
                         .IsRequired();
 
+                    b.Property<string>("FullName");
+
                     b.Property<string>("LastName")
                         .IsRequired();
 
@@ -125,6 +127,8 @@ namespace Insurance.Migrations
 
                     b.Property<int>("CompanyId");
 
+                    b.Property<string>("Metal");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -133,6 +137,44 @@ namespace Insurance.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("PlanTypes");
+                });
+
+            modelBuilder.Entity("Insurance.Models.InsuranceViewModels.Sale", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CarrierId");
+
+                    b.Property<int?>("CustomerId");
+
+                    b.Property<string>("DirectAgent");
+
+                    b.Property<DateTime>("EffectiveDate");
+
+                    b.Property<string>("LeadAgent");
+
+                    b.Property<int>("MemberQuantity");
+
+                    b.Property<string>("Metal");
+
+                    b.Property<double>("Premium");
+
+                    b.Property<int?>("ProductNameId");
+
+                    b.Property<string>("ReferringAgent");
+
+                    b.Property<DateTime>("TerminationDate");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CarrierId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ProductNameId");
+
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("Insurance.Models.InsuranceViewModels.SalePayment", b =>
@@ -288,7 +330,7 @@ namespace Insurance.Migrations
 
             modelBuilder.Entity("Insurance.Models.InsuranceViewModels.Customer", b =>
                 {
-                    b.HasOne("Insurance.Models.InsuranceViewModels.PlanType", "PlanType")
+                    b.HasOne("Insurance.Models.InsuranceViewModels.PlanType")
                         .WithMany("Customers")
                         .HasForeignKey("PlanTypeId");
                 });
@@ -301,10 +343,25 @@ namespace Insurance.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Insurance.Models.InsuranceViewModels.Sale", b =>
+                {
+                    b.HasOne("Insurance.Models.InsuranceViewModels.InsuranceCompany", "Carrier")
+                        .WithMany()
+                        .HasForeignKey("CarrierId");
+
+                    b.HasOne("Insurance.Models.InsuranceViewModels.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.HasOne("Insurance.Models.InsuranceViewModels.PlanType", "ProductName")
+                        .WithMany()
+                        .HasForeignKey("ProductNameId");
+                });
+
             modelBuilder.Entity("Insurance.Models.InsuranceViewModels.SalePayment", b =>
                 {
                     b.HasOne("Insurance.Models.InsuranceViewModels.Customer", "Customer")
-                        .WithMany("SalePayments")
+                        .WithMany()
                         .HasForeignKey("CustomerId");
 
                     b.HasOne("Insurance.Models.InsuranceViewModels.InsuranceCompany", "InsuranceCompany")

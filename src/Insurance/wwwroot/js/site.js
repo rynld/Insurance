@@ -3,6 +3,7 @@
 // Write your Javascript code.
 $("#transaction_table").dataTable();
 $("#customer_table").dataTable();
+$("#sales_table").dataTable();
 
 $('#name_filter').keyup(function () {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
@@ -40,6 +41,8 @@ complete("plantype_row", "plantype_filter");
 $("#startdate_filter").datepicker();
 $("#enddate_filter").datepicker();
 $("#dateofbirth").datepicker();
+$("#effectivedate").datepicker();
+$("#terminationdate").datepicker();
 
 function filter_by_date() {
 
@@ -80,11 +83,14 @@ function compareDates(x, y) {
 
 
 function validate_data() {
+   
     if ($("#plantype").val() == "none" || $("#insurancename") == "none") {
+      
         event.preventDefault();
         $("#submit_button").attr("data-target", "#myModal");
     }
     else {
+       
         $("#submit_button").removeAttr("data-target");
     }
 }

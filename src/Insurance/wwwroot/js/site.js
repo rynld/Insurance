@@ -1,8 +1,9 @@
 ﻿
 
 // Write your Javascript code.
-$("#transaction_table").dataTable();
 $("#customer_table").dataTable();
+$("#transaction_table").dataTable();
+
 $("#sales_table").dataTable();
 
 $('#name_filter').keyup(function () {

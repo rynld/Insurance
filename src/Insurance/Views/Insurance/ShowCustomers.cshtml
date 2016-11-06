@@ -7,36 +7,35 @@
 
 <h2>ShowCustomers</h2>
 
-<div class= "">
-    <table class="table table-striped table-bordered" id="customer_table" >
-        <thead>
-            <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Last Name</td>
-                <td>Middle Name </td>
-                <td>Full Name</td>
-                <td>Email</td>
-                <td>Date of Birth</td>
-                <td>SS</td>
-                <td>State of Birth</td>
-                <td>Phone Number</td>
-                <td>Address</td>
-                <td>State</td>
-                <td>Zip Code</td>
-                <td>County</td>
 
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
+<table class="table table-striped table-bordered" id="customer_table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Last Name</td>
+            <td>Middle Name </td>
+            <td>Full Name</td>
+            <td>Email</td>
+            <td>Date of Birth</td>
+            <td>SS</td>
+            <td>State of Birth</td>
+            <td>Phone Number</td>
+            <td>Address</td>
+            <td>State</td>
+            <td>Zip Code</td>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
             {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Name</td>
-                    <td>@item.LastName</td>
-                    <td>@item.MiddleName</td>
-                    <td>@item.FullName</td>
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.LastName</td>
+                <td>@item.MiddleName</td>
+                <td>@item.FullName</td>
                 <td>@item.Email</td>
                 <td>@item.DateOfBirth</td>
                 <td>@item.SocialSecurity</td>
@@ -46,12 +45,12 @@
                 <td>@item.State</td>
                 <td>@item.ZipCode</td>
             </tr>
-            }
-        </tbody>
+        }
+    </tbody>
 
-    </table>
+</table>
 
-</div>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>

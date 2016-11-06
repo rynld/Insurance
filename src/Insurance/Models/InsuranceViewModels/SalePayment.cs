@@ -11,10 +11,13 @@ namespace Insurance.Models.InsuranceViewModels
 
         public Customer Customer { get; set; }
 
+
         public DateTime DatePayment { get; set; }
 
         public double AmountPaid { get; set; }
 
         public InsuranceCompany InsuranceCompany { get; set;}
+
+      
     }
 }

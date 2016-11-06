@@ -7,7 +7,22 @@
 <h2>PaymentHistory</h2>
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
+        <p>Upload a new Sales file</p>
+        <form method="post" enctype="multipart/form-data" id="form"  asp-action="AddPaymentsFromFile" asp-controller="Insurance" >                       
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
+                    <input id="file_upload" name="uploaded_file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
+                </span>
+                <span class="form-control" style="font-size:smaller; display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%;"></span>
+                
+            </div>
+            <input class="btn btn-success form-control" type="submit" value="Upload" id="upload" />
+        </form>
+    </div>
+
+    <!--<div class="col-md-2">
         <div class="form-group">
             <input id="payment_file" class="form-control" type="text" onchange="" />
             <label class="btn btn-primary form-control" for="my-file-selector">
@@ -19,6 +34,7 @@
             <button class="btn btn-success form-control" onclick="addpayments()">Add</button>
         </div>
     </div>
+        -->
     <div class="col-md-6">
         <table class="table table-bordered  ">
             <thead>
@@ -29,7 +45,20 @@
                 </tr>
             </thead>
             <tbody id="payments_table_body">
-               
+                @if (ViewBag.allValues != null)
+                {
+                    for (int i = 0; i < ViewBag.allValues.Count; i++)                    
+                    {
+                        var item = ViewBag.allValues[i];
+                        
+                        
+                        <tr class="@(!ViewBag.indatabase[i]?"bg-danger ":" ")">
+                            <td>@item.CustomerName</td>
+                            <td>@item.AmountPaid</td>
+                            <td>@item.StatementDate</td>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
     </div>
@@ -40,25 +69,47 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-<script>
+<script type="text/javascript">
     function addpayments() {
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: "AddPaymentsFromFile",
             data: { path: $("#payment_file").val() },
-            error: function () { alert("errror")},
+            error: function () { alert("errror") },
             success: function (data) { showpayments(data) }
 
         })
     };
     $(document).ready(function () {
       
-        
-        //$("#payment_file").('change', handleFile, false);
-       
-   })
+        $("#form").submit(function () {
+            
+            var formdata = new FormData();
+            
+            var totalFiles = $("#file_upload")[0].files.length;
 
-   
+
+            for (var i = 0; i < totalFiles; i++) {
+                var file = $("#file_upload")[0].files[i];
+
+                formData.append(file.name, file);
+            }
+            //formdata.append("file", $("#file_upload").files[0]);
+            return;
+            $.ajax({
+                type : "POST",
+                data : formdata,
+                url: '/Insurance/AddPaymentsFromFile',
+                contentType: false,
+                processData:false,
+                success: function () { alert("success") },
+                error: function () { alert("error") }
+            });
+        });
+        
+    })
+
+
 </script>
 
 @section Scripts {

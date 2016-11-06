@@ -14,15 +14,21 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 
+using Insurance.Controllers.Insurance.Data.Auxiliar;
+using Microsoft.Net.Http.Headers;
+
 namespace Insurance.Controllers
 {
     public class InsuranceController : Controller
-    {        
+    {
         ApplicationDbContext context;
+        IHostingEnvironment _appEnvironment;
 
-        public InsuranceController(ApplicationDbContext context)
+        public InsuranceController(ApplicationDbContext context, IHostingEnvironment appEnvironment)
         {
+
             this.context = context;
+            this._appEnvironment = appEnvironment;
             //context.Database.OpenConnection();
             //context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Customers ON");
             //this.context.Customers.Add(new Customer() {
@@ -93,7 +99,7 @@ namespace Insurance.Controllers
         public IActionResult AddCustomer(CustomerViewModel c)
         {
             var new_customer = new Customer()
-            {               
+            {
                 Name = c.FirstName,
                 LastName = c.LastName,
                 MiddleName = c.MiddleName,
@@ -158,23 +164,43 @@ namespace Insurance.Controllers
         {
             return View(this.context.Payments.ToList());
         }
+
         public IActionResult Sales()
         {
             return View(this.context.Sales.Include(p => p.Customer).Include(p => p.ProductName)
                 .Include(p => p.Carrier).ToList());
         }
 
-
-        public IActionResult AddPaymentsFromFile(string path)
+        [HttpPost]
+        public IActionResult AddPaymentsFromFile(IFormFile file)
         {
+
+            //MultipartParser multipartParser = new MultipartParser(new StreamReader(Request.Body).BaseStream);
+            //if (multipartParser.Success)
+            //{
+            //    var bytes = multipartParser.FileContents;
+            //}
+            string file_path = Path.Combine(this._appEnvironment.ContentRootPath, "ExternalFiles");
+            string name_file = DateTime.Now.Ticks.ToString() + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            string file_name = Path.Combine(file_path, name_file);
+
+            using (FileStream fs = System.IO.File.Create(file_name))
+            {
+                file.CopyTo(fs);
+                fs.Flush();
+            }
+
+
             List<PaymentData> allValues;
 
             List<bool> indatabase = new List<bool>();
-            using (TextReader fileReader = System.IO.File.OpenText(path))
+            using (TextReader fileReader = System.IO.File.OpenText(file_name))
             {
                 var csv = new CsvReader(fileReader);
+                csv.Configuration.IgnoreHeaderWhiteSpace = true;
+
                 allValues = csv.GetRecords<PaymentData>().ToList();
-                var customers = this.context.Customers.Select(c => Regex.Replace(c.Name + " " + c.MiddleName + " " + c.LastName, @"\s+", " "))
+                var customers = this.context.Customers.Select(c => c.FullName)
                     .Distinct().ToDictionary(c => c);
 
                 foreach (var item in allValues)
@@ -182,17 +208,31 @@ namespace Insurance.Controllers
                     indatabase.Add(customers.ContainsKey(item.CustomerName));
                     if (indatabase[indatabase.Count - 1])
                     {
-                        this.context.Payments.Add(new SalePayment()
+                        try
                         {
-                            Customer = this.context.Customers.Where(c => c.FullName == item.CustomerName).First(),
-                            AmountPaid = double.Parse(item.AmountPaid.Substring(1)),
-                            DatePayment = Convert.ToDateTime(item.StatementDate)
-                        });
+                            var payment = new SalePayment()
+                            {
+                                Customer = this.context.Customers.Where(c => c.FullName == item.CustomerName).First(),
+                                AmountPaid = double.Parse(item.AmountPaid.Substring(1)),
+                                DatePayment = Convert.ToDateTime(item.StatementDate)
+                            };
+                        }
+                        catch (Exception e)
+                        {
+                            indatabase[indatabase.Count - 1] = false;
+                        }
+
+                        //if (this.context.Payments.FirstOrDefault() == null)
+                        //    this.context.Payments.Add(payment);
                     }
                 }
             }
 
-            return this.Json(new object[] { allValues, indatabase });
+            ViewBag.data = true;
+            ViewBag.allValues = allValues;
+            ViewBag.indatabase = indatabase;
+            return View("PaymentHistory");
+            //return this.Json(new object[] { allValues, indatabase });
         }
 
         [HttpPost]
@@ -200,8 +240,8 @@ namespace Insurance.Controllers
         {
             List<SaleData> allValues;
 
-
-            using (FileStream fs = System.IO.File.Create(file.FileName))
+            string path_file = this._appEnvironment.ContentRootPath + "\\ExternalFiles\\" + file.FileName + DateTime.Now.ToString();
+            using (FileStream fs = System.IO.File.Create(path_file))
             {
                 file.CopyTo(fs);
                 fs.Flush();
@@ -209,7 +249,7 @@ namespace Insurance.Controllers
 
             List<bool> indatabase = new List<bool>();
             double aux;
-            using (TextReader fileReader = System.IO.File.OpenText(file.FileName))
+            using (TextReader fileReader = System.IO.File.OpenText(path_file))
             {
                 var csv = new CsvReader(fileReader);
                 csv.Configuration.IgnoreHeaderWhiteSpace = true;
@@ -271,6 +311,18 @@ namespace Insurance.Controllers
             }
             return new JsonResult("");
 
+        }
+
+
+        public IActionResult GenerateReport(DateTime date)
+        {
+            date = new DateTime(2016, 6, 25);
+            var t = this.context.Payments.Where(p => p.DatePayment == date).ToList();
+            var x = (from sales in this.context.Sales.Include(s => s.Customer)
+                     join pay in this.context.Payments on sales.ID equals pay.Customer.Id
+                     where pay.DatePayment == date
+                     select new { sales.Customer.FullName, pay.AmountPaid });
+            return View();
         }
 
     }

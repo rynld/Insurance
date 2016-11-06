@@ -2,6 +2,10 @@
   "userSecretsId": "aspnet-Insurance-b483fc7c-6897-4519-bfea-21c3d9b71bab",
 
   "dependencies": {
+    "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "1.0.0-preview2-final",
+      "type": "build"
+    },
     "Microsoft.NETCore.App": {
       "version": "1.0.0",
       "type": "platform"
@@ -24,10 +28,7 @@
       "version": "1.0.0",
       "type": "build"
     },
-    "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "1.0.0-preview2-final",
-      "type": "build"
-    },
+    
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0",
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0",
@@ -46,7 +47,9 @@
     },
     "ChilkatDnCore": "9.5.0.58",
     "CsvHelper": "2.16.3",
-    "AutoMapper": "5.1.1"},
+    "AutoMapper": "5.1.1",
+    "Microsoft.jQuery.Unobtrusive.Ajax": "3.2.3"
+  },
 
   "tools": {
     "BundlerMinifier.Core": "2.0.238",

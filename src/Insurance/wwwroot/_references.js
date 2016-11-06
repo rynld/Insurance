@@ -4,6 +4,7 @@
 /// <reference path="lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" />
 /// <reference path="lib/datatables/media/js/jquery.dataTables.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />
+/// <reference path="lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js" />
 /// <reference path="lib/jquery-ui/jquery-ui.js" />
 /// <reference path="lib/jquery-validation/dist/jquery.validate.js" />
 /// <reference path="lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" />

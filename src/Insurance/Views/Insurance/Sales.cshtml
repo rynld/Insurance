@@ -6,24 +6,7 @@
 
 <h2>Sales</h2>
 
-<div class="row">
-    <div class="col-md-6">
-        <form method="post" asp-action="AddSalesFromFile" asp-controller="Insurance" enctype="multipart/form-data">
-            <input class="" id="sales-file-selector" type="file" name="file" />
-            <input class="btn btn-success form-control" type="submit" value="Upload" />
-            <!--<div class="form-group">
-                <label class="col-md-2 control-label">Insurance Name</label>
-                <div class="col-md-6">
-                    <select id="insurancename" class="form-control" asp-items="ViewBag.InsuranceNames">
-                        <option value="none">Please select one</option>
-                    </select>
-                </div>
-            </div>
-                -->
-        </form>
-        
-    </div>
-</div>
+
 
 
 <table class="table table-striped table-bordered" id="sales_table">
@@ -62,6 +45,27 @@
     </tbody>
 
 </table>
+
+<div class="row">
+    <div class="col-md-3">
+        <p>Upload a new Sales file</p>
+        <form method="post" asp-action="AddSalesFromFile" asp-controller="Insurance" enctype="multipart/form-data">
+            <input class="form-control" id="sales-file-selector" type="file" name="file" />
+            
+            <input class="btn btn-success form-control" type="submit" value="Upload" />
+            <!--<div class="form-group">
+                <label class="col-md-2 control-label">Insurance Name</label>
+                <div class="col-md-6">
+                    <select id="insurancename" class="form-control" asp-items="ViewBag.InsuranceNames">
+                        <option value="none">Please select one</option>
+                    </select>
+                </div>
+            </div>
+                -->
+        </form>
+
+    </div>
+</div>
 
 <div>
     <a asp-action="Index">Back to List</a>

@@ -13,7 +13,7 @@
             <div class="input-group">
                 <span class="input-group-btn">
                     <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
-                    <input id="file_upload" name="uploaded_file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
+                    <input id="file_upload" name="file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
                 </span>
                 <span class="form-control" style="font-size:smaller; display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%;"></span>
                 
@@ -22,19 +22,7 @@
         </form>
     </div>
 
-    <!--<div class="col-md-2">
-        <div class="form-group">
-            <input id="payment_file" class="form-control" type="text" onchange="" />
-            <label class="btn btn-primary form-control" for="my-file-selector">
-                <input id="my-file-selector" type="file" style="display:none;" onchange="$('#payment_file').val($(this).val()); handleFile(this)">
-                Add File
-            </label>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-success form-control" onclick="addpayments()">Add</button>
-        </div>
-    </div>
-        -->
+   
     <div class="col-md-6">
         <table class="table table-bordered  ">
             <thead>
@@ -47,16 +35,18 @@
             <tbody id="payments_table_body">
                 @if (ViewBag.allValues != null)
                 {
-                    for (int i = 0; i < ViewBag.allValues.Count; i++)                    
+                    for (int i = 0; i < ViewBag.allValues.Count; i++)
                     {
                         var item = ViewBag.allValues[i];
-                        
-                        
-                        <tr class="@(!ViewBag.indatabase[i]?"bg-danger ":" ")">
+
+                        if (!ViewBag.indatabase[i])
+                        {
+                        <tr class="@(!ViewBag.indatabase[i] ? "bg-danger " : " ")">
                             <td>@item.CustomerName</td>
                             <td>@item.AmountPaid</td>
                             <td>@item.StatementDate</td>
                         </tr>
+                        }
                     }
                 }
             </tbody>

@@ -1,0 +1,346 @@
+NSPaymentID,Customer Name,Amount Paid,Statement Date
+1,Belen Conesa,$100.00,25-Jan-16
+2,Alina Morales,$50.00,25-Jan-16
+3,Delsa Bernardo,$50.00,25-Jan-16
+4,Juan Marin,$100.00,25-Jan-16
+5,Isabel Ramirez,$50.00,25-Jan-16
+6,Ricardo Martin,$50.00,25-Jan-16
+7,Abby Sarmiento,$50.00,25-Jan-16
+8,Rafael Abuin,$100.00,25-Jan-16
+9,Lucila Rodriguez,$50.00,25-Jan-16
+10,Daniela Davidov Schwimmer,$50.00,25-Jan-16
+11,Julie Burkard,$100.00,25-Jan-16
+12,Joseph Piccinonna,$100.00,25-Jan-16
+13,Joseph Destefano,$50.00,25-Jan-16
+14,Ariana Destefano,$100.00,25-Jan-16
+15,Joan Rachlin,$100.00,25-Jan-16
+16,Lyubov Raffoul,$400.00,25-Jan-16
+17,Maribel Schwaninger,$100.00,25-Jan-16
+18,Edelys Perez,$100.00,25-Jan-16
+19,Mayelin Perez,$200.00,25-Jan-16
+20,Janet M Alvarez,$50.00,25-Jan-16
+21,Jessica Plaza- Sanchez,$200.00,25-Jan-16
+22,Enrique Rodriguez,$100.00,25-Jan-16
+23,Angie Rodriguez,$50.00,25-Jan-16
+24,Mina Yanovich De Wielgus,$100.00,25-Jan-16
+25,Julia A Morrison,$100.00,25-Jan-16
+26,Roberto Morales,$300.00,25-Jan-16
+27,Carlos Ramirez,$100.00,25-Jan-16
+28,Belinda Willett,$100.00,25-Jan-16
+29,Natalia Jaramillo,$50.00,25-Jan-16
+30,Claudia Bernal,$300.00,25-Jan-16
+31,Paula Calderon,$100.00,25-Jan-16
+32,Jaime Tello,$200.00,25-Jan-16
+33,Eugene lombardi,$50.00,25-Jan-16
+34,Barbara Wilson,$100.00,25-Jan-16
+35,Kaycee Coyle Brittle,$100.00,25-Jan-16
+36,Deahni Kipnis,$100.00,25-Jan-16
+37,Yazmin Ramos,$200.00,25-Jan-16
+38,Maria Kottke,$100.00,25-Jan-16
+39,Daryxa De Diego,$100.00,25-Jan-16
+94,Belen Conesa,$200.00,25-Feb-16
+95,Libia Bedoya Castano,$200.00,25-Feb-16
+96,Rafael Betancourt,$400.00,25-Feb-16
+97,Rafael Betancourt,($200.00),25-Feb-16
+98,Andrew Vigil,$200.00,25-Feb-16
+99,Andrew Vigil,($100.00),25-Feb-16
+100,Justin Vigil,$200.00,25-Feb-16
+101,Justin Vigil,($100.00),25-Feb-16
+102,Delsa Bernardo,($50.00),25-Feb-16
+103,Delsa Bernardo,$100.00,25-Feb-16
+104,Alina Morales,$100.00,25-Feb-16
+105,Alina Morales,($50.00),25-Feb-16
+106,Juan Marin,$200.00,25-Feb-16
+107,Juan Marin,($100.00),25-Feb-16
+108,Isabel Ramirez,$100.00,25-Feb-16
+109,Abby Sarmiento,($50.00),25-Feb-16
+110,Abby Sarmiento,$100.00,25-Feb-16
+111,Rafael Abuin,$200.00,25-Feb-16
+112,Rafael Abuin,($100.00),25-Feb-16
+113,Ricardo Martin,$100.00,25-Feb-16
+114,Ricardo Martin,($50.00),25-Feb-16
+115,Daniela Davidov Schwimmer,($50.00),25-Feb-16
+116,Daniela Davidov Schwimmer,$100.00,25-Feb-16
+117,Lucila Rodriguez,$100.00,25-Feb-16
+118,Lucila Rodriguez,($50.00),25-Feb-16
+119,Julie Burkard,$200.00,25-Feb-16
+120,Julie Burkard,($100.00),25-Feb-16
+121,Joseph Piccinonna,($100.00),25-Feb-16
+122,Joseph Piccinonna,$200.00,25-Feb-16
+123,Joseph Destefano,$100.00,25-Feb-16
+124,Ariana Destefano,($100.00),25-Feb-16
+125,Ariana Destefano,$200.00,25-Feb-16
+126,Lyubov Raffoul,$800.00,25-Feb-16
+127,Lyubov Raffoul,($400.00),25-Feb-16
+128,Jessica Plaza- Sanchez,$400.00,25-Feb-16
+129,Jessica Plaza- Sanchez,($200.00),25-Feb-16
+130,Joan Rachlin,($100.00),25-Feb-16
+131,Joan Rachlin,$200.00,25-Feb-16
+132,Edelys Perez,$200.00,25-Feb-16
+133,Edelys Perez,($100.00),25-Feb-16
+134,Maribel Schwaninger,$200.00,25-Feb-16
+135,Mayelin Perez,$400.00,25-Feb-16
+136,Mayelin Perez,($200.00),25-Feb-16
+137,Janet M Alvarez,$100.00,25-Feb-16
+138,Janet M Alvarez,($50.00),25-Feb-16
+139,Angie Rodriguez,$100.00,25-Feb-16
+140,Angie Rodriguez,($50.00),25-Feb-16
+141,Enrique Rodriguez,$200.00,25-Feb-16
+142,Enrique Rodriguez,($100.00),25-Feb-16
+143,Julia A Morrison,$200.00,25-Feb-16
+144,Julia A Morrison,($100.00),25-Feb-16
+145,Mina Yanovich De Wielgus,($100.00),25-Feb-16
+146,Mina Yanovich De Wielgus,$200.00,25-Feb-16
+147,Ivette Pla,$100.00,25-Feb-16
+148,Belinda Willett,$200.00,25-Feb-16
+149,Belinda Willett,($100.00),25-Feb-16
+150,Carlos Ramirez,($100.00),25-Feb-16
+151,Carlos Ramirez,$200.00,25-Feb-16
+152,Roberto Morales,($300.00),25-Feb-16
+153,Roberto Morales,$600.00,25-Feb-16
+154,Hans Jo Pajunk,$8.33,25-Feb-16
+155,Natalia Jaramillo,$100.00,25-Feb-16
+156,Natalia Jaramillo,($50.00),25-Feb-16
+157,Joann Vetro,$400.00,25-Feb-16
+158,Chris Hill,$400.00,25-Feb-16
+159,Diego Bello,$200.00,25-Feb-16
+160,Vanessa Cunto,$200.00,25-Feb-16
+162,Marija Dimitrovska,$200.00,25-Feb-16
+163,Erica L Jones,$100.00,25-Feb-16
+164,Soyla R Padilla,$200.00,25-Feb-16
+165,Ivonne Linares,$200.00,25-Feb-16
+166,Jose Blanco,$100.00,25-Feb-16
+167,Eridania Carta,$400.00,25-Feb-16
+168,Lindsey Penn,$200.00,25-Feb-16
+169,Micheline C Viergutz,$16.67,25-Feb-16
+170,Mieko Brightman,$16.67,25-Feb-16
+171,Horace Williams,$16.67,25-Feb-16
+172,Lugannys Margarita Soto,$16.67,25-Feb-16
+173,Kenna C Fetterman,$16.67,25-Feb-16
+174,Carlos Barrios,$16.67,25-Feb-16
+175,Amparo Alarcon,$100.00,25-Feb-16
+178,Carlos Bello,$200.00,25-Feb-16
+180,Leith Marie Antonacci,$16.67,25-Feb-16
+181,Claudia Bernal,$600.00,25-Feb-16
+182,Claudia Bernal,($300.00),25-Feb-16
+183,Paula Calderon,$200.00,25-Feb-16
+184,Paula Calderon,($100.00),25-Feb-16
+185,Jaime Tello,$400.00,25-Feb-16
+186,Jaime Tello,($200.00),25-Feb-16
+187,Sylvestine Ferdinand,$400.00,25-Feb-16
+188,Eugene lombardi,($50.00),25-Feb-16
+189,Eugene lombardi,$100.00,25-Feb-16
+190,Anita Gillis,$33.33,25-Feb-16
+191,Barbara Wilson,$200.00,25-Feb-16
+192,Barbara Wilson,($100.00),25-Feb-16
+193,Kaycee Coyle Brittle,$200.00,25-Feb-16
+194,Kaycee Coyle Brittle,($100.00),25-Feb-16
+195,Deahni Kipnis,$200.00,25-Feb-16
+196,Deahni Kipnis,($100.00),25-Feb-16
+197,Yazmin Ramos,$400.00,25-Feb-16
+198,Yazmin Ramos,($200.00),25-Feb-16
+199,Maria Kottke,$200.00,25-Feb-16
+200,Daryxa De Diego,$200.00,25-Feb-16
+201,Daryxa De Diego,($100.00),25-Feb-16
+202,Primo Fernandez Jordan,$25.00,25-Feb-16
+203,Annamarie Adams,$300.00,25-Feb-16
+204,Lars P Skaarvp,$16.67,25-Feb-16
+205,Chaddi A Jurdi,$200.00,25-Feb-16
+206,Wilberto Rodriguez,$400.00,25-Feb-16
+207,Angela M Carmona,$200.00,25-Feb-16
+208,Noel Suarez,$16.67,25-Feb-16
+209,Maria Rodriguez,$8.33,25-Feb-16
+210,Olga Galante,$400.00,25-Feb-16
+211,Primo Fernandez Jordan,$25.00,25-Feb-16
+212,Eridania Carta,($275.00),25-Mar-16
+213,Olivera Stefanova,$12.50,25-Mar-16
+214,Hans Jo Pajunk,$4.17,25-Mar-16
+215,Micheline C Viergutz,$12.50,25-Mar-16
+216,Mieko Brightman,$12.50,25-Mar-16
+217,Horace Williams,$8.33,25-Mar-16
+218,Lugannys Margarita Soto,$12.50,25-Mar-16
+219,Anita Gillis,$12.50,25-Mar-16
+220,Carlos Barrios,$8.33,25-Mar-16
+221,Annamarie Adams,$300.00,25-Mar-16
+222,Leith Marie Antonacci,$12.50,25-Mar-16
+223,Primo Fernandez Jordan,$12.50,25-Mar-16
+224,Primo Fernandez Jordan,($12.50),25-Mar-16
+225,Belen Conesa,($75.00),25-Mar-16
+226,Libia Bedoya Castano,($75.00),25-Mar-16
+227,Isabel Ramirez,($25.00),25-Mar-16
+228,Joseph Destefano,($25.00),25-Mar-16
+229,Maribel Schwaninger,($75.00),25-Mar-16
+230,Lars P Skaarvp,$25.00,25-Mar-16
+231,Barbara Garcia,$12.50,25-Mar-16
+232,Ramon Esperon,$4.17,25-Mar-16
+233,Maria Kottke,($50.00),25-Mar-16
+234,Jessica Karmazin,$4.17,25-Mar-16
+235,Angela M Carmona,$12.50,25-Mar-16
+238,Annamarie Adams,$8.33,25-Mar-16
+239,Carlos Valdes,($105.00),25-Apr-16
+240,Carlos Valdes,($600.00),25-Apr-16
+241,Mairelys Vega,$4.17,25-Apr-16
+242,Christian Flores,$4.17,25-Apr-16
+243,Margarita Ducasse,$12.50,25-Apr-16
+244,Juliana Gallo,$4.17,25-Apr-16
+245,Elise C Klinsport,$4.17,25-Apr-16
+246,Jesus Marquez-Gonzalez,$4.17,25-Apr-16
+247,Sergio Conti,$12.50,25-Apr-16
+248,Elizabeta Kosturska,$12.50,25-Apr-16
+249,Teresa Musumeci,$4.17,25-Apr-16
+250,Olivera Stefanova,$12.50,25-Apr-16
+251,Hans Jo Pajunk,$4.17,25-Apr-16
+252,Micheline C Viergutz,$12.50,25-Apr-16
+253,Mieko Brightman,$12.50,25-Apr-16
+254,Horace Williams,$8.33,25-Apr-16
+255,Lugannys Margarita Soto,$12.50,25-Apr-16
+256,Anita Gillis,$12.50,25-Apr-16
+257,Carlos Barrios,$8.33,25-Apr-16
+258,Annamarie Adams,$8.33,25-Apr-16
+259,Leith Marie Antonacci,$12.50,25-Apr-16
+260,Primo Fernandez Jordan,$12.50,25-Apr-16
+261,Jessica Karmazin,$4.17,25-Apr-16
+262,Lars P Skaarvp,$25.00,25-Apr-16
+263,Angela M Carmona,$12.50,25-Apr-16
+264,Barbara Garcia,$12.50,25-Apr-16
+265,Ramon Esperon,$4.17,25-Apr-16
+266,Wilma Christine R Aragao,$37.50,25-Apr-16
+267,Elizabeth Draman,$12.50,25-Apr-16
+268,Kelvin A Burgos,$12.50,25-Apr-16
+269,Carlos Valdes,$600.00,25-May-16
+270,Diana Jimenez,$25.00,25-May-16
+271,Olivera Stefanova,$12.50,25-May-16
+272,Hans Jo Pajunk,$4.17,25-May-16
+273,Micheline C Viergutz,$12.50,25-May-16
+274,Mieko Brightman,$12.50,25-May-16
+275,Horace Williams,$8.33,25-May-16
+276,Lugannys Margarita Soto,$12.50,25-May-16
+277,Anita Gillis,$12.50,25-May-16
+278,Carlos Barrios,$8.33,25-May-16
+279,Annamarie Adams,$8.33,25-May-16
+280,Leith Marie Antonacci,$12.50,25-May-16
+281,Primo Fernandez Jordan,$12.50,25-May-16
+282,Mairelys Vega,$4.17,25-May-16
+283,Christian Flores,$4.17,25-May-16
+284,Margarita Ducasse,$12.50,25-May-16
+285,Juliana Gallo,$4.17,25-May-16
+286,Elise C Klinsport,$4.17,25-May-16
+287,Jesus Marquez-Gonzalez,$4.17,25-May-16
+288,Wilma Christine R Aragao,$37.50,25-May-16
+289,Sergio Conti,$12.50,25-May-16
+290,Elizabeta Kosturska,$12.50,25-May-16
+291,Teresa Musumeci,$4.17,25-May-16
+351,Jessica Karmazin,($4.17),25-May-16
+352,Lars P Skaarvp,$25.00,25-May-16
+353,Angela M Carmona,$12.50,25-May-16
+354,Barbara Garcia,$12.50,25-May-16
+355,Ramon Esperon,$4.17,25-May-16
+356,Elizabeth Draman,$12.50,25-May-16
+357,Kelvin A Burgos,$12.50,25-May-16
+374,Cordy H Frei,$250.00,25-May-16
+375,Natalia M Padura,$200.00,25-May-16
+376,Alfredo J Revoredo,$150.00,25-May-16
+418,Angie Rodriguez,($41.67),25-Jun-16
+419,Adam H Paiz,($125.00),25-Jun-16
+420,Marija Dimitrovska,($100.00),25-Jun-16
+421,Alfredo J Revoredo,$400.00,25-Jun-16
+422,Alfredo J Revoredo,($200.00),25-Jun-16
+425,Olivera Stefanova,$12.50,25-Jun-16
+427,Micheline C Viergutz,$12.50,25-Jun-16
+429,Horace Williams,$8.33,25-Jun-16
+431,Anita Gillis,$12.50,25-Jun-16
+432,Carlos Barrios,$8.33,25-Jun-16
+433,Annamarie Adams,$8.33,25-Jun-16
+435,Primo Fernandez Jordan,$12.50,25-Jun-16
+436,Mairelys Vega,$4.17,25-Jun-16
+437,Christian Flores,$4.17,25-Jun-16
+438,Margarita Ducasse,$12.50,25-Jun-16
+439,Juliana Gallo,$4.17,25-Jun-16
+441,Jesus Marquez-Gonzalez,$4.17,25-Jun-16
+443,Sergio Conti,$12.50,25-Jun-16
+444,Elizabeta Kosturska,$12.50,25-Jun-16
+445,Teresa Musumeci,$4.17,25-Jun-16
+446,Janet M Alvarez,($29.17),25-Jun-16
+447,Hans Jo Pajunk,$4.17,25-Jun-16
+448,Elise C Klinsport,$4.17,25-Jun-16
+449,Mieko Brightman,$12.50,25-Jun-16
+450,Lugannys Margarita Soto,$12.50,25-Jun-16
+451,Leith Marie Antonacci,$12.50,25-Jun-16
+453,Wilma Christine R Aragao,$37.50,25-Jun-16
+460,Maria O Gawlik,$200.00,25-Jun-16
+461,Gina Colandrea,$75.00,25-Jun-16
+462,Dale S Caba,$300.00,25-Jun-16
+464,Daryxa De Diego,($100.00),25-Jun-16
+466,Lars P Skaarvp,$25.00,25-Jun-16
+467,Angela M Carmona,$12.50,25-Jun-16
+468,Barbara Garcia,$12.50,25-Jun-16
+469,Ramon Esperon,$4.17,25-Jun-16
+470,Elizabeth Draman,$12.50,25-Jun-16
+471,Kelvin A Burgos,$12.50,25-Jun-16
+473,Jessica T Andrews,$200.00,25-Jun-16
+474,Mairelys Vega,$4.17,25-Jul-16
+475,Christian Flores,$4.17,25-Jul-16
+476,Margarita Ducasse,$12.50,25-Jul-16
+477,Juliana Gallo,$4.17,25-Jul-16
+478,Elise C Klinsport,$4.17,25-Jul-16
+479,Jesus Marquez-Gonzalez,$4.17,25-Jul-16
+481,Sergio Conti,$12.50,25-Jul-16
+482,Elizabeta Kosturska,$12.50,25-Jul-16
+483,Teresa Musumeci,$4.17,25-Jul-16
+484,Olivera Stefanova,$12.50,25-Jul-16
+487,Hans Jo Pajunk,$4.17,25-Jul-16
+488,Micheline C Viergutz,$12.50,25-Jul-16
+489,Mieko Brightman,$12.50,25-Jul-16
+490,Horace Williams,$8.33,25-Jul-16
+492,Anita Gillis,$12.50,25-Jul-16
+493,Carlos Barrios,$8.33,25-Jul-16
+494,Annamarie Adams,$8.33,25-Jul-16
+496,Primo Fernandez Jordan,$12.50,25-Jul-16
+498,Lugannys Margarita Soto,$12.50,25-Jul-16
+499,Leith Marie Antonacci,$12.50,25-Jul-16
+501,Wilma Christine R Aragao,$37.50,25-Jul-16
+502,Elizabeth Draman,$12.50,25-Jul-16
+503,Kelvin A Burgos,$12.50,25-Jul-16
+504,Lars P Skaarvp,$25.00,25-Jul-16
+505,Angela M Carmona,$12.50,25-Jul-16
+506,Barbara Garcia,$12.50,25-Jul-16
+507,Ramon Esperon,$4.17,25-Jul-16
+508,Ana M Corpora,($175.00),25-Jul-16
+509,Olivia Mcinarnay,$75.00,25-Jul-16
+510,Tatiana F Sensenig,$37.50,25-Jul-16
+511,Miranda Hernandez,$20.69,25-Jul-16
+512,Belinda Willett,($100.00),25-Aug-16
+513,Olivia Mcinarnay,$150.00,25-Aug-16
+514,Olivia Mcinarnay,($75.00),25-Aug-16
+515,Tatiana F Sensenig,($37.50),25-Aug-16
+516,Mairelys Vega,$4.17,25-Aug-16
+517,Christian Flores,$4.17,25-Aug-16
+518,Margarita Ducasse,($12.50),25-Aug-16
+519,Juliana Gallo,$4.17,25-Aug-16
+520,Elise C Klinsport,$4.17,25-Aug-16
+521,Jesus Marquez-Gonzalez,$4.17,25-Aug-16
+522,Sergio Conti,$12.50,25-Aug-16
+523,Elizabeta Kosturska,$12.50,25-Aug-16
+524,Teresa Musumeci,$4.17,25-Aug-16
+525,Olivera Stefanova,($12.50),25-Aug-16
+526,Hans Jo Pajunk,$4.17,25-Aug-16
+527,Micheline C Viergutz,$12.50,25-Aug-16
+528,Mieko Brightman,$12.50,25-Aug-16
+529,Horace Williams,($8.33),25-Aug-16
+530,Anita Gillis,$12.50,25-Aug-16
+531,Carlos Barrios,$8.33,25-Aug-16
+532,Annamarie Adams,$8.33,25-Aug-16
+533,Primo Fernandez Jordan,$12.50,25-Aug-16
+534,Julia A Morrison,($62.50),25-Aug-16
+535,Tatiana F Sensenig,$75.00,25-Aug-16
+536,Wilma Christine R Aragao,$37.50,25-Aug-16
+537,Lugannys Margarita Soto,$12.50,25-Aug-16
+538,Leith Marie Antonacci,$12.50,25-Aug-16
+540,Maria T Botero,$100.00,25-Aug-16
+541,Elizabeth Draman,$12.50,
+542,Kelvin A Burgos,$12.50,
+543,Lars P Skaarvp,$25.00,
+544,Angela M Carmona,$12.50,
+545,Barbara Garcia,$12.50,
+546,Ramon Esperon,$4.17,
+,,"$17,332.40",

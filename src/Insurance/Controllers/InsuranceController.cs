@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Runtime;
 using Microsoft.AspNetCore.Mvc;
 using Insurance.Models.InsuranceViewModels;
 using Insurance.Data;
@@ -174,12 +175,6 @@ namespace Insurance.Controllers
         [HttpPost]
         public IActionResult AddPaymentsFromFile(IFormFile file)
         {
-
-            //MultipartParser multipartParser = new MultipartParser(new StreamReader(Request.Body).BaseStream);
-            //if (multipartParser.Success)
-            //{
-            //    var bytes = multipartParser.FileContents;
-            //}
             string file_path = Path.Combine(this._appEnvironment.ContentRootPath, "ExternalFiles");
             string name_file = DateTime.Now.Ticks.ToString() + ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             string file_name = Path.Combine(file_path, name_file);
@@ -203,18 +198,22 @@ namespace Insurance.Controllers
                 var customers = this.context.Customers.Select(c => c.FullName)
                     .Distinct().ToDictionary(c => c);
 
+                
                 foreach (var item in allValues)
                 {
                     indatabase.Add(customers.ContainsKey(item.CustomerName));
                     if (indatabase[indatabase.Count - 1])
                     {
+                        DateTime date;
+                        var can = DateTime.TryParse(item.StatementDate, out date);
+
                         try
                         {
                             var payment = new SalePayment()
                             {
                                 Customer = this.context.Customers.Where(c => c.FullName == item.CustomerName).First(),
-                                AmountPaid = double.Parse(item.AmountPaid.Substring(1)),
-                                DatePayment = Convert.ToDateTime(item.StatementDate)
+                                AmountPaid = GetAmount(item.AmountPaid),
+                                DatePayment = (can)?date:DateTime.MinValue
                             };
                         }
                         catch (Exception e)
@@ -323,6 +322,17 @@ namespace Insurance.Controllers
                      where pay.DatePayment == date
                      select new { sales.Customer.FullName, pay.AmountPaid });
             return View();
+        }
+
+        public double GetAmount(string text)
+        {
+            double val;
+            if (text[0] == '(')
+            {
+                return -1*double.Parse(text.Substring(2, text.Length - 3));
+                val *= -1;
+            }
+            return double.Parse(text.Substring(1));
         }
 
     }

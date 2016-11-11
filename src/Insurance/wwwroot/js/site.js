@@ -1,10 +1,19 @@
 ﻿
 
 // Write your Javascript code.
-$("#customer_table").dataTable();
-$("#transaction_table").dataTable();
+$("#customer_table").dataTable({
+    "scrollX": true
+});
+$("#transaction_table").dataTable({
+    "scrollX": true
+});
+$("#payment_table").dataTable({
+    "scrollX": true
+});
 
-$("#sales_table").dataTable();
+$("#sales_table").dataTable({
+    "scrollX":true
+});
 
 $('#name_filter').keyup(function () {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();

@@ -9,22 +9,22 @@
 <div class="row">
     <div class="col-md-3">
         <p>Upload a new Sales file</p>
-        <form method="post" enctype="multipart/form-data" id="form"  asp-action="AddPaymentsFromFile" asp-controller="Insurance" >                       
+        <form method="post" enctype="multipart/form-data" id="form" asp-action="AddPaymentsFromFile" asp-controller="Insurance">
             <div class="input-group">
                 <span class="input-group-btn">
                     <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
                     <input id="file_upload" name="file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
                 </span>
                 <span class="form-control" style="font-size:smaller; display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%;"></span>
-                
+
             </div>
             <input class="btn btn-success form-control" type="submit" value="Upload" id="upload" />
         </form>
     </div>
 
-   
+
     <div class="col-md-6">
-        <table class="table table-bordered  ">
+        <table id="payment_table" class="table table-bordered  ">
             <thead>
                 <tr>
                     <th>Customer Name</th>
@@ -39,14 +39,23 @@
                     {
                         var item = ViewBag.allValues[i];
 
-                        if (!ViewBag.indatabase[i])
-                        {
                         <tr class="@(!ViewBag.indatabase[i] ? "bg-danger " : " ")">
                             <td>@item.CustomerName</td>
                             <td>@item.AmountPaid</td>
                             <td>@item.StatementDate</td>
                         </tr>
-                        }
+
+                    }
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Customer.FullName</td>
+                            <td>@item.AmountPaid</td>
+                            <td>@item.DatePayment</td>
+                        </tr>
                     }
                 }
             </tbody>
@@ -71,11 +80,11 @@
         })
     };
     $(document).ready(function () {
-      
+
         $("#form").submit(function () {
-            
+
             var formdata = new FormData();
-            
+
             var totalFiles = $("#file_upload")[0].files.length;
 
 
@@ -87,16 +96,19 @@
             //formdata.append("file", $("#file_upload").files[0]);
             return;
             $.ajax({
-                type : "POST",
-                data : formdata,
+                type: "POST",
+                data: formdata,
                 url: '/Insurance/AddPaymentsFromFile',
                 contentType: false,
-                processData:false,
+                processData: false,
                 success: function () { alert("success") },
                 error: function () { alert("error") }
             });
         });
-        
+
+        //calculate total of current_payments
+        $("payment_table").find('tr:visible');
+
     })
 
 

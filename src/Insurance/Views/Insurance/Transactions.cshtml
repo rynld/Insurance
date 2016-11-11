@@ -1,0 +1,43 @@
+@model IEnumerable<Insurance.Data.Auxiliar.PaymentData>
+
+@{
+    ViewData["Title"] = "Transactions";
+}
+
+<h2>Transactions</h2>
+
+<table class="table table-bordered  ">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Amount Paid</th>
+            <th>Statement Date</th>
+        </tr>
+    </thead>
+    <tbody id="transaction_table_body">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CustomerName</td>
+                <td>@item.AmountPaid</td>
+                <td>@item.StatementDate</td>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td></td>
+            <td>@ViewBag.total</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

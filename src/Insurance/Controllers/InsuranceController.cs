@@ -163,13 +163,26 @@ namespace Insurance.Controllers
 
         public IActionResult PaymentHistory()
         {
-            return View(this.context.Payments.ToList());
+            return View(this.context.Payments.Include(p=>p.Customer).ToList());
         }
 
         public IActionResult Sales()
         {
             return View(this.context.Sales.Include(p => p.Customer).Include(p => p.ProductName)
                 .Include(p => p.Carrier).ToList());
+        }
+
+        public IActionResult Transactions()
+        {
+            return View(new PaymentData[] { });
+        }
+
+        public IActionResult GetInfoPayments(int user_id)
+        {
+            var result = this.context.Payments.Where(p => p.Customer.Id == user_id);
+            ViewBag.total = result.Sum(p => p.AmountPaid);
+            return View(result);
+            
         }
 
         [HttpPost]
@@ -215,6 +228,7 @@ namespace Insurance.Controllers
                                 AmountPaid = GetAmount(item.AmountPaid),
                                 DatePayment = (can)?date:DateTime.MinValue
                             };
+                            this.context.Payments.Add(payment);
                         }
                         catch (Exception e)
                         {
@@ -226,6 +240,8 @@ namespace Insurance.Controllers
                     }
                 }
             }
+
+            this.context.SaveChanges();
 
             ViewBag.data = true;
             ViewBag.allValues = allValues;

@@ -2,13 +2,16 @@
 
 // Write your Javascript code.
 $("#customer_table").dataTable({
+   
     "scrollX": true
 });
 $("#transaction_table").dataTable({
     "scrollX": true
 });
 $("#payment_table").dataTable({
-    "scrollX": true
+    "scrollY": "50vh",
+    "paging": false,
+    "scrollCollapse": true,
 });
 
 $("#sales_table").dataTable({

@@ -9,7 +9,7 @@ $("#transaction_table").dataTable({
     "scrollX": true
 });
 $("#payment_table").dataTable({
-    "scrollY": "50vh",
+    "scrollY": "70vh",
     "paging": false,
     "scrollCollapse": true,
 });

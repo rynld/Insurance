@@ -6,28 +6,17 @@
 
 <h2>PaymentHistory</h2>
 
-<div class="row">
-    <div class="col-md-3">
-        <p>Upload a new Sales file</p>
-        <form method="post" enctype="multipart/form-data" id="form" asp-action="AddPaymentsFromFile" asp-controller="Insurance">
-            <div class="input-group">
-                <span class="input-group-btn">
-                    <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
-                    <input id="file_upload" name="file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
-                </span>
-                <span class="form-control" style="font-size:smaller; display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%;"></span>
 
-            </div>
-            <input class="btn btn-success form-control" type="submit" value="Upload" id="upload" />
-        </form>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-3">
-        <input type="button" class="btn btn-success" value="pepe" id="btn_test" />
-    </div>
-</div>
 
+<div class="row">
+    <div class="col-md-12">
+        <h3>Total</h3>
+    </div>
+    <div class="col-md-12">
+        <h3 class="label label-info" id="total_pay"></h3>
+    </div>
+
+</div>
 <div class="row">
     <div class="col-md-12">
         <table id="payment_table" class="table table-bordered">
@@ -66,9 +55,25 @@
                 }
             </tbody>
         </table>
+        
     </div>
 </div>
+<div class="row">
+    <div class="col-md-3">
+        <p>Upload a new Sales file</p>
+        <form method="post" enctype="multipart/form-data" id="form" asp-action="AddPaymentsFromFile" asp-controller="Insurance">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary" onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
+                    <input id="file_upload" name="file" onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());" style="display: none;" type="file">
+                </span>
+                <span class="form-control" style="font-size:smaller; display: block; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; width: 100%;"></span>
 
+            </div>
+            <input class="btn btn-success form-control" type="submit" value="Upload" id="upload" />
+        </form>
+    </div>
+</div>
 
 
 <div>
@@ -115,16 +120,26 @@
 
         //calculate total of current_payments
 
-        $("#btn_test").click(function () {
+        //this is for the first time
+        var values = $('#payment_table').DataTable().columns({ filter: 'applied' }).data()[1];
+        var res = 0;
+        for (var i = 0; i < values.length; i++) {
+            res += parseInt(values[i]);
+        }
+        $("#total_pay").text(res);
 
+        //when the user search for someone
+        $('#payment_table').on('search.dt', function () {            
             var values = $('#payment_table').DataTable().columns({ filter: 'applied' }).data()[1];
 
             var res = 0;
             for (var i = 0; i < values.length; i++) {
                 res += parseInt(values[i]);
             }
-            console.log(res);
+            $("#total_pay").text(res);
         });
+
+            
     });
 
 </script>

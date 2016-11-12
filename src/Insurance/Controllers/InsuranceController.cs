@@ -352,5 +352,10 @@ namespace Insurance.Controllers
             return double.Parse(text.Substring(1));
         }
 
+        public void A()
+        {
+            //pepepe
+        }
+
     }
 }

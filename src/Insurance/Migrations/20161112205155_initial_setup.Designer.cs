@@ -8,8 +8,8 @@ using Insurance.Data;
 namespace Insurance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20161010010823_second")]
-    partial class second
+    [Migration("20161112205155_initial_setup")]
+    partial class initial_setup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

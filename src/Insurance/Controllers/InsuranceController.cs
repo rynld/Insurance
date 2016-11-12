@@ -163,6 +163,7 @@ namespace Insurance.Controllers
 
         public IActionResult PaymentHistory()
         {
+            
             return View(this.context.Payments.Include(p=>p.Customer).ToList());
         }
 

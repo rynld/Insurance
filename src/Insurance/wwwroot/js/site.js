@@ -8,15 +8,8 @@ $("#customer_table").dataTable({
 $("#transaction_table").dataTable({
     "scrollX": true
 });
-$("#payment_table").dataTable({
-    "scrollY": "70vh",
-    "paging": false,
-    "scrollCollapse": true,
-});
 
-$("#sales_table").dataTable({
-    "scrollX":true
-});
+
 
 $('#name_filter').keyup(function () {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
@@ -130,4 +123,31 @@ function showpayments(data)
         $("#payments_table_body").append(row);
     }
    
+}
+
+function add_input_search(table_name)
+{
+    console.log(table_name);
+    table_name = "#" + table_name;
+
+    $('#payment_table tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+    });
+
+    // DataTable
+    var table = $("#payment_table").DataTable();
+
+    // Apply the search
+    table.columns().every(function () {
+        var that = this;
+
+        $('input', this.footer()).on('keyup change', function () {
+            if (that.search() !== this.value) {
+                that
+                    .search(this.value)
+                    .draw();
+            }
+        });
+    });
 }

@@ -17,6 +17,27 @@
     </div>
 
 </div>
+
+<div class="row">
+    <div class="col-md-2 pull-right">        
+            <label class="control-label">Initial Date</label>
+            <div class="">
+                <input id="initial_date" class="" />
+                <span class="text-danger" />
+            </div>
+        </div> 
+</div>
+<div class="row">
+    <div class="col-md-2 pull-right">
+        <label class="control-label">Final Date</label>
+        <div class="">
+            <input id="final_date" class="" />
+            <span class="text-danger" />
+        </div>
+    </div>
+</div>
+
+
 <div class="row">
     <div class="col-md-12">
         <table id="payment_table" class="table table-bordered">
@@ -55,11 +76,11 @@
                 }
             </tbody>
         </table>
-        
+
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 pull-right">
         <p>Upload a new Sales file</p>
         <form method="post" enctype="multipart/form-data" id="form" asp-action="AddPaymentsFromFile" asp-controller="Insurance">
             <div class="input-group">
@@ -93,6 +114,12 @@
     };
     $(document).ready(function () {
 
+        var table = $("#payment_table").DataTable({
+            "scrollY": "70vh",
+            "paging": false,
+            "scrollCollapse": true,
+        });
+
         $("#form").submit(function () {
 
             var formdata = new FormData();
@@ -121,7 +148,7 @@
         //calculate total of current_payments
 
         //this is for the first time
-        var values = $('#payment_table').DataTable().columns({ filter: 'applied' }).data()[1];
+        var values = table.columns({ filter: 'applied' }).data()[1];
         var res = 0;
         for (var i = 0; i < values.length; i++) {
             res += parseInt(values[i]);
@@ -129,8 +156,8 @@
         $("#total_pay").text(res);
 
         //when the user search for someone
-        $('#payment_table').on('search.dt', function () {            
-            var values = $('#payment_table').DataTable().columns({ filter: 'applied' }).data()[1];
+        $('#payment_table').on('search.dt', function () {
+            var values = table.columns({ filter: 'applied' }).data()[1];
 
             var res = 0;
             for (var i = 0; i < values.length; i++) {
@@ -139,7 +166,33 @@
             $("#total_pay").text(res);
         });
 
+
+        /* Custom filtering function which will search data in column four between two values */
+        $.fn.dataTable.ext.search.push(
             
+            function (settings, data, dataIndex) {
+                
+                var mn = new Date($('#initial_date').val());
+                if (mn == "Invalid Date")
+                    mn = new Date("1/1/1001");
+
+                var mx = new Date($('#final_date').val());
+                if (mx == "Invalid Date")
+                    mx = new Date("12/31/9999");
+
+                
+                var current = new Date(data[2]);
+
+                return (mn <= current && current <= mx);
+
+                
+            }          
+        );
+
+        $('#initial_date, #final_date').keyup(function () {
+            table.draw();
+        });
+
     });
 
 </script>

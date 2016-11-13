@@ -15,31 +15,35 @@
     <div class="col-md-12">
         <h3 class="label label-info" id="total_pay"></h3>
     </div>
-
-</div>
-
-<div class="row">
-    <div class="col-md-2 pull-right">        
-            <label class="control-label">Initial Date</label>
-            <div class="">
-                <input id="initial_date" class="" />
-                <span class="text-danger" />
-            </div>
-        </div> 
-</div>
-<div class="row">
-    <div class="col-md-2 pull-right">
-        <label class="control-label">Final Date</label>
-        <div class="">
-            <input id="final_date" class="" />
-            <span class="text-danger" />
-        </div>
-    </div>
 </div>
 
 
 <div class="row">
     <div class="col-md-12">
+        <div class="">
+            <label class="control-label">Initial Date</label>
+            <input id="initial_date" style="bottom:4px; position:relative"/>
+        </div>
+        <div class="">
+            <label class="control-label">Final Date</label>
+            <input id="final_date" style="bottom:4px; position:relative" />
+        </div>
+        @*<table border="0" cellspacing="5" class="pull-right">
+            <tbody>
+                <tr>
+                    <td >
+                        <label class="control-label">Initial Date</label>
+                        <input id="initial_date"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="control-label">Final Date</label>
+                        <input id="final_date" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>*@
         <table id="payment_table" class="table table-bordered">
             <thead>
                 <tr>
@@ -118,8 +122,9 @@
             "scrollY": "70vh",
             "paging": false,
             "scrollCollapse": true,
+            "dom": '<"toolbar">frtip'
         });
-
+        //$("div.toolbar").html('<label>Initial Date</label> <input id="initial_date" />');
         $("#form").submit(function () {
 
             var formdata = new FormData();
@@ -169,9 +174,9 @@
 
         /* Custom filtering function which will search data in column four between two values */
         $.fn.dataTable.ext.search.push(
-            
+
             function (settings, data, dataIndex) {
-                
+
                 var mn = new Date($('#initial_date').val());
                 if (mn == "Invalid Date")
                     mn = new Date("1/1/1001");
@@ -180,13 +185,13 @@
                 if (mx == "Invalid Date")
                     mx = new Date("12/31/9999");
 
-                
+
                 var current = new Date(data[2]);
 
                 return (mn <= current && current <= mx);
 
-                
-            }          
+
+            }
         );
 
         $('#initial_date, #final_date').keyup(function () {
